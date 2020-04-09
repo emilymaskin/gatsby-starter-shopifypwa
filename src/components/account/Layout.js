@@ -2,18 +2,18 @@ import React from 'react'
 import AuthenticationWrapper from './AuthenticationWrapper'
 import { replace } from 'gatsby'
 
-const GuestLayout = ({ children }) => {
+const AccountLayout = ({ children }) => {
   return (
     <AuthenticationWrapper>
       {({ isAuthenticated }) =>
         isAuthenticated
-          ? typeof window !== 'undefined'
-            ? replace(`/account`)
-            : null
-          : children
+          ? children
+          : typeof window !== 'undefined'
+          ? replace(`/account/login`)
+          : null
       }
     </AuthenticationWrapper>
   )
 }
 
-export default GuestLayout
+export default AccountLayout

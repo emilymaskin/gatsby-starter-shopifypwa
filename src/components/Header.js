@@ -18,11 +18,12 @@ const Header = ({ siteTitle }) => (
         padding: '1rem',
       }}
     >
-      <h1 style={{
-            display: 'flex',
-            margin: 0,
-            fontSize: '24px',
-          }}
+      <h1
+        style={{
+          display: 'flex',
+          margin: 0,
+          fontSize: '24px',
+        }}
       >
         <Link
           to="/"
@@ -34,15 +35,15 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
         <AuthenticationWrapper>
-          {({isAuthenticated}) => {
+          {({ isAuthenticated }) => {
             return (
               <div
                 style={{
                   marginLeft: 'auto',
                 }}
               >
-              {!isAuthenticated
-                ? <>
+                {!isAuthenticated ? (
+                  <>
                     <Link
                       to="/account/login"
                       style={{
@@ -52,22 +53,15 @@ const Header = ({ siteTitle }) => (
                       Log In
                     </Link>
                     &nbsp;
-                      <Link
-                        to="/account/register"
-                      >
-                        Sign Up
-                    </Link>
+                    <Link to="/account/register">Sign Up</Link>
                   </>
-                : <>
-                    <Link
-                      to="/account"
-                    >
-                      My Account
-                    </Link>
+                ) : (
+                  <>
+                    <Link to="/account">My Account</Link>
                     &nbsp;
                     <Logout />
                   </>
-              }
+                )}
                 <CartLink />
               </div>
             )

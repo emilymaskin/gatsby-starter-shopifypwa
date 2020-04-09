@@ -1,27 +1,28 @@
-import React from 'react';
+import React from 'react'
 
-class VariantSelector extends React.Component {
-    render() {
-        return (
-            <div>
-                <label onChange={null}>
-                    {this.props.option.name}
-                    <select
-                        className="Product__option"
-                        name={this.props.option.name}
-                        key={this.props.option.name}
-                        onChange={this.props.handleOptionChange}
-                    >
-                        {this.props.option.values.map((value) => {
-                            return (
-                                <option value={value} key={`${this.props.option.name}-${value}`}>{`${value}`}</option>
-                            )
-                        })}
-                    </select>
-                </label>
-            </div>
-        );
-    }
+const VariantSelector = ({ option, handleOptionChange }) => {
+  return (
+    <div>
+      <label onChange={null}>
+        {option.name}
+        <select
+          className="Product__option"
+          name={option.name}
+          key={option.name}
+          onChange={handleOptionChange}
+        >
+          {option.values.map(value => {
+            return (
+              <option
+                value={value}
+                key={`${option.name}-${value}`}
+              >{`${value}`}</option>
+            )
+          })}
+        </select>
+      </label>
+    </div>
+  )
 }
 
-export default VariantSelector;
+export default VariantSelector

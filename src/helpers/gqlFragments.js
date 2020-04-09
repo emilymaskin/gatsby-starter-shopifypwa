@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
 export const ReturnFieldsCheckout = gql`
-fragment ReturnFieldsCheckout on Checkout {
+  fragment ReturnFieldsCheckout on Checkout {
     id
     webUrl
     totalTax
@@ -11,22 +11,22 @@ fragment ReturnFieldsCheckout on Checkout {
     currencyCode
     taxesIncluded
     lineItems(first: 250) {
-        edges {
-            node {
-                id
-                title
-                quantity
-                variant {
-                    sku
-                    price
-                    compareAtPrice
-                    selectedOptions {
-                        name
-                        value
-                    }
-                }
+      edges {
+        node {
+          id
+          title
+          quantity
+          variant {
+            sku
+            price
+            compareAtPrice
+            selectedOptions {
+              name
+              value
             }
+          }
         }
+      }
     }
-}
+  }
 `
