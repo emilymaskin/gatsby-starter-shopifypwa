@@ -1,12 +1,5 @@
 {
   "Main": {
-    "brand_name": {
-      "type": "Text",
-      "config": {
-        "label": "Brand name",
-        "placeholder": "e.g. AXEON Water Technologies"
-      }
-    },
     "brand_slug": {
       "type": "Text",
       "config": {

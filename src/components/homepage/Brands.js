@@ -7,16 +7,16 @@ const Brands = ({ brands }) => {
     <>
       <h2>Shop by Brand</h2>
       <div className={css(styles.bestSellers)}>
-        {brands.map((brand, index) => {
-          const { handle, name, image } = brand;
+        {brands.edges.map((brand, index) => {
+          const { brand_slug, brand_logo } = brand.node.data;
 
           return (
             <div key={index} className={css(styles.brand)}>
-              <Link to={`/collections/${handle}`} className={css(styles.link)}>
-                <img
-                  src={`//cdn.shopify.com/s/files/1/2723/8896/files/${image}`}
-                  alt={name}
-                />
+              <Link
+                to={`/collections/${brand_slug}`}
+                className={css(styles.link)}
+              >
+                <img src={brand_logo.fixed.src} alt={brand_logo.alt} />
               </Link>
             </div>
           );
