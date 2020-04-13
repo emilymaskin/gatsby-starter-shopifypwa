@@ -1,0 +1,29 @@
+{
+  "Main": {
+    "brand_name": {
+      "type": "Text",
+      "config": {
+        "label": "Brand name",
+        "placeholder": "e.g. AXEON Water Technologies"
+      }
+    },
+    "brand_slug": {
+      "type": "Text",
+      "config": {
+        "label": "Brand slug (URL)",
+        "placeholder": "e.g. axeon-water"
+      }
+    },
+    "brand_logo": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 120,
+          "height": 120
+        },
+        "thumbnails": [],
+        "label": "Brand logo"
+      }
+    }
+  }
+}

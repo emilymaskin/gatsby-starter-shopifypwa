@@ -58,5 +58,17 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-netlify`,
+    {
+      resolve: 'gatsby-source-prismic',
+      options: {
+        repositoryName: 'fwsco', // (REQUIRED, replace with your own)
+        accessToken:
+          'MC5YcFRpV3hBQUFPN0c0Y19a.77-977-9Ru-_ve-_vSFWeRbvv73vv73vv709OlttQkMd77-977-9MO-_ve-_ve-_vXAwce-_vX_vv719', // (optional API access token)
+        schemas: {
+          blog_post: require('./src/schemas/blog_post.json'),
+          homepage_brand: require('./src/schemas/homepage_brand.json'),
+        },
+      },
+    },
   ],
 };
