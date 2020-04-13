@@ -34,7 +34,8 @@ const brands = [
   {
     handle: 'sharkbite-fittings',
     name: 'SharkBite Fittings',
-    image: 'Home_Page_Logo_SharkBite.jpg',
+    image:
+      'Home_Page_Logo_SharkBite_120x120_c0f65ef8-120d-41da-a6bc-50ceaf4c624b_500x.jpg',
   },
   {
     handle: '3m-aqua-pure',
