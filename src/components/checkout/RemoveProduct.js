@@ -1,8 +1,8 @@
-import React from 'react'
-import { Mutation } from 'react-apollo'
-import gql from 'graphql-tag'
-import ContextConsumer from '../../layouts/context'
-import { ReturnFieldsCheckout } from '../../helpers/gqlFragments'
+import React from 'react';
+import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import ContextConsumer from '../../layouts/context';
+import { ReturnFieldsCheckout } from '../../helpers/gqlFragments';
 
 const REMOVE_LINE_ITEM = gql`
   mutation checkoutLineItemsRemove($checkoutId: ID!, $lineItemIds: [ID!]!) {
@@ -20,7 +20,7 @@ const REMOVE_LINE_ITEM = gql`
     }
   }
   ${ReturnFieldsCheckout}
-`
+`;
 
 const RemoveProduct = ({ id }) => {
   return (
@@ -36,8 +36,8 @@ const RemoveProduct = ({ id }) => {
                   res.checkoutLineItemsRemove.checkout == null
                     ? 0
                     : res.checkoutLineItemsRemove.checkout.lineItems.edges
-                        .length,
-              })
+                        .length
+              });
             }}
           >
             {(removeLineItem, { data, loading, errors }) => {
@@ -49,20 +49,20 @@ const RemoveProduct = ({ id }) => {
                     removeLineItem({
                       variables: {
                         checkoutId: store.checkout.id,
-                        lineItemIds: [id],
-                      },
-                    })
+                        lineItemIds: [id]
+                      }
+                    });
                   }}
                 >
                   Remove
                 </button>
-              )
+              );
             }}
           </Mutation>
-        )
+        );
       }}
     </ContextConsumer>
-  )
-}
+  );
+};
 
-export default RemoveProduct
+export default RemoveProduct;

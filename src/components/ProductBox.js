@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from 'react';
+import { Link } from 'gatsby';
 
 const ProductBox = ({ product }) => {
   const {
@@ -9,12 +9,12 @@ const ProductBox = ({ product }) => {
     priceRange: {
       minVariantPrice: { currencyCode, amount },
     },
-  } = product
+  } = product;
 
   const minPrice = new Intl.NumberFormat('en', {
     style: 'currency',
     currency: currencyCode,
-  }).format(amount)
+  }).format(amount);
 
   return (
     <li>
@@ -39,7 +39,7 @@ const ProductBox = ({ product }) => {
         <div>{`From ${minPrice}`}</div>
       </Link>
     </li>
-  )
-}
+  );
+};
 
-export default ProductBox
+export default ProductBox;

@@ -1,13 +1,13 @@
-import React from 'react'
-import gql from 'graphql-tag'
-import { Mutation } from 'react-apollo'
-import { Link, navigate } from 'gatsby'
-import { Formik, ErrorMessage } from 'formik'
-import * as Yup from 'yup'
-import ContextConsumer from '../../layouts/context'
-import GuestLayout from '../../components/account/GuestLayout'
-import PasswordInput from '../../components/form/PasswordInput'
-import { parseErrors } from '../../helpers/formErrors'
+import React from 'react';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
+import { Link } from 'gatsby';
+import { Formik, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import ContextConsumer from '../../layouts/context';
+import GuestLayout from '../../components/account/GuestLayout';
+import PasswordInput from '../../components/form/PasswordInput';
+import { parseErrors } from '../../helpers/formErrors';
 
 const CUSTOMER_RESET = gql`
   mutation customerReset($id: ID!, $input: CustomerResetInput!) {
@@ -25,7 +25,7 @@ const CUSTOMER_RESET = gql`
       }
     }
   }
-`
+`;
 
 const FormSchema = Yup.object().shape({
   password: Yup.string().required('Password is Required'),
@@ -34,37 +34,39 @@ const FormSchema = Yup.object().shape({
       [Yup.ref('password')],
       'Password and confirmation must been the same'
     )
-    .required('Password Confirmation is Required'),
-})
+    .required('Password Confirmation is Required')
+});
 
 class ResetPassword extends React.Component {
   constructor(props) {
-    super(props)
-    this.firstInput = React.createRef()
+    super(props);
+    this.firstInput = React.createRef();
   }
 
   handleFirstInputFocus() {
-    this.firstInput.current.focus()
+    this.firstInput.current.focus();
   }
 
   componentDidMount() {
-    this.handleFirstInputFocus()
+    this.handleFirstInputFocus();
   }
 
   state = {
     customerId: '',
-    resetToken: '',
-  }
+    resetToken: ''
+  };
 
   componentDidMount() {
-    const params = new URLSearchParams(document.location.search.substring(1))
-    const customerId = window.btoa(`gid://shopify/Customer/${params.get('id')}`)
-    const resetToken = params.get('token')
+    const params = new URLSearchParams(document.location.search.substring(1));
+    const customerId = window.btoa(
+      `gid://shopify/Customer/${params.get('id')}`
+    );
+    const resetToken = params.get('token');
 
     this.setState({
       customerId: customerId,
-      resetToken: resetToken,
-    })
+      resetToken: resetToken
+    });
   }
 
   render() {
@@ -81,7 +83,7 @@ class ResetPassword extends React.Component {
                       initialValues={{
                         form: '',
                         password: '',
-                        passwordVerification: '',
+                        passwordVerification: ''
                       }}
                       validationSchema={FormSchema}
                       onSubmit={(values, actions) => {
@@ -90,31 +92,30 @@ class ResetPassword extends React.Component {
                             id: this.state.customerId,
                             input: {
                               resetToken: this.state.resetToken,
-                              password: values.password,
-                            },
-                          },
+                              password: values.password
+                            }
+                          }
                         }).then(res => {
                           if (res.data.customerReset.customerAccessToken) {
                             set({
                               customerAccessToken:
-                                res.data.customerReset.customerAccessToken,
-                            })
+                                res.data.customerReset.customerAccessToken
+                            });
                           } else {
                             const errors = parseErrors(
                               res.data.customerReset.userErrors
-                            )
-                            actions.setErrors(errors)
+                            );
+                            actions.setErrors(errors);
                           }
-                        })
+                        });
                       }}
                       render={({
                         handleSubmit,
                         handleChange,
-                        handleBlur,
                         isSubmitting,
                         values,
                         errors,
-                        touched,
+                        touched
                       }) => (
                         <form onSubmit={handleSubmit}>
                           <ErrorMessage name="form" />
@@ -169,22 +170,22 @@ class ResetPassword extends React.Component {
                         </form>
                       )}
                     />
-                  )
+                  );
                 }}
               </Mutation>
               <Link to={`/account/login`}>Log In</Link>
             </>
-          )
+          );
         }}
       </ContextConsumer>
-    )
+    );
 
     return !this.state.customerId || !this.state.resetToken ? (
       <p>Malformed password reset url.</p>
     ) : (
       <GuestLayout>{pageContent}</GuestLayout>
-    )
+    );
   }
 }
 
-export default ResetPassword
+export default ResetPassword;

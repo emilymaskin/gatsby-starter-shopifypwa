@@ -1,5 +1,5 @@
-import React from 'react'
-import ContextConsumer from '../../layouts/context'
+import React from 'react';
+import ContextConsumer from '../../layouts/context';
 
 const AuthenticationWrapper = ({ children }) => {
   return (
@@ -10,13 +10,13 @@ const AuthenticationWrapper = ({ children }) => {
           store.customerAccessToken.expiresAt &&
           store.customerAccessToken.expiresAt > new Date().toISOString()
             ? true
-            : false
+            : false;
         return children({
-          isAuthenticated,
-        })
+          isAuthenticated
+        });
       }}
     </ContextConsumer>
-  )
-}
+  );
+};
 
-export default AuthenticationWrapper
+export default AuthenticationWrapper;

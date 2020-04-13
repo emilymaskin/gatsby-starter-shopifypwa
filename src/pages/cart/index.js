@@ -1,35 +1,21 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
-import ContextConsumer from '../../layouts/context'
-import CartTable from '../../components/checkout/CartTable'
-import { ReturnFieldsCheckout } from '../../helpers/gqlFragments'
-
-const CART_ITEMS = gql`
-  query checkoutQuery($id: ID!) {
-    node(id: $id) {
-      ... on Checkout {
-        ...ReturnFieldsCheckout
-      }
-    }
-  }
-  ${ReturnFieldsCheckout}
-`
+import React from 'react';
+import { Link } from 'gatsby';
+import ContextConsumer from '../../layouts/context';
+import CartTable from '../../components/checkout/CartTable';
 
 const emptyCart = (
   <>
     <p>Your cart is currently empty.</p>
     <Link to={`/`}>Continue Shopping</Link>
   </>
-)
+);
 
 // TODO: Abstract into helper function.Will be used for sharing carts
 const checkoutUrl = storeProvider => {
-  let url = storeProvider.checkout.webUrl
+  let url = storeProvider.checkout.webUrl;
 
-  return url
-}
+  return url;
+};
 
 const Cart = () => (
   <>
@@ -37,7 +23,7 @@ const Cart = () => (
     <ContextConsumer>
       {({ store }) => {
         if (!store.checkout || store.cartCount === 0) {
-          return emptyCart
+          return emptyCart;
         }
 
         return (
@@ -52,10 +38,10 @@ const Cart = () => (
             <br />
             <a href={checkoutUrl(store)}>Go to Checkout</a>
           </>
-        )
+        );
       }}
     </ContextConsumer>
   </>
-)
+);
 
-export default Cart
+export default Cart;

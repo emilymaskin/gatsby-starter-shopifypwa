@@ -1,9 +1,9 @@
-import React from 'react'
-import { graphql, Link } from 'gatsby'
-import ProductList from '../components/ProductList'
+import React from 'react';
+import { graphql } from 'gatsby';
+import ProductList from '../components/ProductList';
 class Products extends React.Component {
   render() {
-    const products = this.props.data.shopify.shop.products
+    const products = this.props.data.shopify.shop.products;
 
     return (
       <div>
@@ -15,17 +15,17 @@ class Products extends React.Component {
           }}
         />
       </div>
-    )
+    );
   }
 }
 
-export default Products
+export default Products;
 
 export const query = graphql`
   query productsQuery {
     shopify {
       shop {
-        products(first: 20) {
+        products(first: 40) {
           edges {
             node {
               id
@@ -55,4 +55,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

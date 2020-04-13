@@ -1,4 +1,4 @@
-import gql from 'graphql-tag'
+import gql from 'graphql-tag';
 
 export const ReturnFieldsCheckout = gql`
   fragment ReturnFieldsCheckout on Checkout {
@@ -29,4 +29,4 @@ export const ReturnFieldsCheckout = gql`
       }
     }
   }
-`
+`;

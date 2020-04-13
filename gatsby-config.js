@@ -1,10 +1,10 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 module.exports = {
   siteMetadata: {
-    title: 'Bodega Cloud',
+    title: 'Fresh Water Systems',
   },
   plugins: [
     `gatsby-plugin-layout`,
@@ -36,7 +36,8 @@ module.exports = {
         fieldName: 'shopify',
         url: `https://${process.env.GATSBY_SHOPIFY_SHOP_NAME}.myshopify.com/api/graphql`,
         headers: {
-          'X-Shopify-Storefront-Access-Token': process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
+          'X-Shopify-Storefront-Access-Token':
+            process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
         },
       },
     },
@@ -45,8 +46,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'Bodega Cloud',
-        short_name: 'Bodega',
+        name: 'Fresh Water Systems',
+        short_name: 'FWS',
         start_url: '/',
         background_color: '#50B83C',
         theme_color: '#50B83C',
@@ -57,4 +58,4 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-netlify`,
   ],
-}
+};

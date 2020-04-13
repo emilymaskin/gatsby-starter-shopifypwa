@@ -1,12 +1,11 @@
-import React from 'react'
-import gql from 'graphql-tag'
-import { Mutation } from 'react-apollo'
-import { Link, navigate } from 'gatsby'
-import GuestLayout from '../../components/account/GuestLayout'
-import { Formik, ErrorMessage } from 'formik'
-import * as Yup from 'yup'
-import { parseErrors } from '../../helpers/formErrors'
-import PropTypes from 'prop-types'
+import React from 'react';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
+import { Link, navigate } from 'gatsby';
+import GuestLayout from '../../components/account/GuestLayout';
+import { Formik, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { parseErrors } from '../../helpers/formErrors';
 
 const CUSTOMER_RESET = gql`
   mutation customerRecover($email: String!) {
@@ -17,26 +16,26 @@ const CUSTOMER_RESET = gql`
       }
     }
   }
-`
+`;
 
 const FormSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email address')
-    .required('Email is Required'),
-})
+    .required('Email is Required')
+});
 
 class ForgotPassword extends React.Component {
   constructor(props) {
-    super(props)
-    this.firstInput = React.createRef()
+    super(props);
+    this.firstInput = React.createRef();
   }
 
   handleFirstInputFocus() {
-    this.firstInput.current.focus()
+    this.firstInput.current.focus();
   }
 
   componentDidMount() {
-    this.handleFirstInputFocus()
+    this.handleFirstInputFocus();
   }
 
   render() {
@@ -49,37 +48,36 @@ class ForgotPassword extends React.Component {
               <Formik
                 initialValues={{
                   form: '',
-                  email: '',
+                  email: ''
                 }}
                 validationSchema={FormSchema}
                 onSubmit={(values, actions) => {
                   if (!values.email) {
-                    return
+                    return;
                   }
 
                   forgotPassword({
                     variables: {
-                      email: values.email,
-                    },
+                      email: values.email
+                    }
                   }).then(res => {
                     if (!res.data.customerRecover.userErrors.length) {
-                      navigate('/account/login')
+                      navigate('/account/login');
                     } else {
                       const errors = parseErrors(
                         res.data.customerRecover.userErrors
-                      )
-                      actions.setErrors(errors)
+                      );
+                      actions.setErrors(errors);
                     }
-                  })
+                  });
                 }}
                 render={({
                   handleSubmit,
                   handleChange,
-                  handleBlur,
                   isSubmitting,
                   values,
                   errors,
-                  touched,
+                  touched
                 }) => (
                   <form onSubmit={handleSubmit}>
                     <ErrorMessage name="form" />
@@ -112,15 +110,15 @@ class ForgotPassword extends React.Component {
                   </form>
                 )}
               />
-            )
+            );
           }}
         </Mutation>
         <Link to={`/account/login`}>Log In</Link>
       </>
-    )
+    );
 
-    return <GuestLayout>{pageContent}</GuestLayout>
+    return <GuestLayout>{pageContent}</GuestLayout>;
   }
 }
 
-export default ForgotPassword
+export default ForgotPassword;

@@ -1,8 +1,8 @@
-import React from 'react'
-import AccountLayout from '../../components/account/layout'
-import ContextConsumer from '../../layouts/context'
-import gql from 'graphql-tag'
-import { Query } from 'react-apollo'
+import React from 'react';
+import AccountLayout from '../../components/account/layout';
+import ContextConsumer from '../../layouts/context';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
 
 const CUSTOMER_INFO = gql`
   query($customerAccessToken: String!) {
@@ -37,7 +37,7 @@ const CUSTOMER_INFO = gql`
       }
     }
   }
-`
+`;
 
 class Account extends React.Component {
   render() {
@@ -50,12 +50,12 @@ class Account extends React.Component {
               <Query
                 query={CUSTOMER_INFO}
                 variables={{
-                  customerAccessToken: store.customerAccessToken.accessToken,
+                  customerAccessToken: store.customerAccessToken.accessToken
                 }}
               >
                 {({ loading, error, data }) => {
-                  if (error) return <div>Error :(</div>
-                  let greeting = `Welcome back!`
+                  if (error) return <div>Error :(</div>;
+                  let greeting = `Welcome back!`;
 
                   if (loading)
                     return (
@@ -80,11 +80,13 @@ class Account extends React.Component {
                           <p></p>
                         </div>
                       </>
-                    )
+                    );
 
-                  const { firstName, email, phone, orders } = data.customer
+                  const { firstName, email, phone, orders } = data.customer;
 
-                  greeting = firstName ? `Welcome back ${firstName}!` : greeting
+                  greeting = firstName
+                    ? `Welcome back ${firstName}!`
+                    : greeting;
 
                   return (
                     <>
@@ -112,15 +114,15 @@ class Account extends React.Component {
                         )}
                       </div>
                     </>
-                  )
+                  );
                 }}
               </Query>
-            )
+            );
           }}
         </ContextConsumer>
       </AccountLayout>
-    )
+    );
   }
 }
 
-export default Account
+export default Account;

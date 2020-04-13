@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const PasswordInput = () => {
-  const [isPasswordMasked, setIsPasswordMasked] = useState(true)
+  const [isPasswordMasked, setIsPasswordMasked] = useState(true);
 
-  setIsPasswordMasked(!isPasswordMasked)
+  setIsPasswordMasked(!isPasswordMasked);
 
   return (
     <div>
@@ -12,7 +12,7 @@ const PasswordInput = () => {
         {isPasswordMasked ? 'show' : 'hide'}
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default PasswordInput
+export default PasswordInput;

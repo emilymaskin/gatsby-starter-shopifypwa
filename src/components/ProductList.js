@@ -1,10 +1,10 @@
-import React from 'react'
-import ProductBox from './ProductBox'
+import React from 'react';
+import ProductBox from './ProductBox';
 
 const ProductList = ({ products }) => {
   const productList = products.edges.map(({ node }) => (
     <ProductBox key={node.id.toString()} product={node} />
-  ))
+  ));
 
   return (
     <>
@@ -19,7 +19,7 @@ const ProductList = ({ products }) => {
         {productList}
       </ul>
     </>
-  )
-}
+  );
+};
 
-export default ProductList
+export default ProductList;

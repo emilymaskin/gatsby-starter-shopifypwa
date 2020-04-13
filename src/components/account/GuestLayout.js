@@ -1,6 +1,6 @@
-import React from 'react'
-import AuthenticationWrapper from './AuthenticationWrapper'
-import { replace } from 'gatsby'
+import React from 'react';
+import AuthenticationWrapper from './AuthenticationWrapper';
+import { replace } from 'gatsby';
 
 const GuestLayout = ({ children }) => {
   return (
@@ -13,7 +13,7 @@ const GuestLayout = ({ children }) => {
           : children
       }
     </AuthenticationWrapper>
-  )
-}
+  );
+};
 
-export default GuestLayout
+export default GuestLayout;

@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import ContextConsumer from '../../layouts/context'
+import React from 'react';
+import { Link } from 'gatsby';
+import ContextConsumer from '../../layouts/context';
 
 const CartLink = () => (
   <ContextConsumer>
@@ -12,16 +12,16 @@ const CartLink = () => (
             to="/cart"
             onClick={() => {
               set({
-                isCartOpen: true,
-              })
+                isCartOpen: true
+              });
             }}
           >
             Cart ({store.cartCount})
           </Link>
         </>
-      )
+      );
     }}
   </ContextConsumer>
-)
+);
 
-export default CartLink
+export default CartLink;

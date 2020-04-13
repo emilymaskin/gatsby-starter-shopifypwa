@@ -1,8 +1,8 @@
-import React from 'react'
-import { Link, navigate } from 'gatsby'
-import gql from 'graphql-tag'
-import { Mutation } from 'react-apollo'
-import ContextConsumer from '../../layouts/context'
+import React from 'react';
+import { Link, navigate } from 'gatsby';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
+import ContextConsumer from '../../layouts/context';
 
 const CUSTOMER_LOGOUT = gql`
   mutation customerAccessTokenDelete($customerAccessToken: String!) {
@@ -15,7 +15,7 @@ const CUSTOMER_LOGOUT = gql`
       deletedCustomerAccessTokenId
     }
   }
-`
+`;
 
 const Logout = () => (
   <ContextConsumer>
@@ -24,16 +24,16 @@ const Logout = () => (
         <Mutation
           mutation={CUSTOMER_LOGOUT}
           onCompleted={data => {
-            if (data.customerAccessTokenDelete.userErrors.length) return
+            if (data.customerAccessTokenDelete.userErrors.length) return;
 
             set({
               customerAccessToken: '',
-              cart: '',
-            })
+              cart: ''
+            });
 
             // TODO: if active checkout, dissaociate customer
 
-            navigate('/account/login')
+            navigate('/account/login');
           }}
         >
           {(customerLogout, { loading }) => {
@@ -41,25 +41,24 @@ const Logout = () => (
               <Link
                 to="/account/login"
                 onClick={e => {
-                  e.preventDefault()
+                  e.preventDefault();
 
                   // delete the Shopify customer token
                   customerLogout({
                     variables: {
-                      customerAccessToken:
-                        store.customerAccessToken.accessToken,
-                    },
-                  })
+                      customerAccessToken: store.customerAccessToken.accessToken
+                    }
+                  });
                 }}
               >
                 Log Out
               </Link>
-            )
+            );
           }}
         </Mutation>
-      )
+      );
     }}
   </ContextConsumer>
-)
+);
 
-export default Logout
+export default Logout;

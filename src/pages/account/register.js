@@ -1,12 +1,12 @@
-import React from 'react'
-import gql from 'graphql-tag'
-import { Mutation } from 'react-apollo'
-import { Link, navigate } from 'gatsby'
-import GuestLayout from '../../components/account/GuestLayout'
-import { Formik, ErrorMessage } from 'formik'
-import * as Yup from 'yup'
-import { parseErrors } from '../../helpers/formErrors'
-import PasswordInput from '../../components/form/PasswordInput'
+import React from 'react';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
+import { Link, navigate } from 'gatsby';
+import GuestLayout from '../../components/account/GuestLayout';
+import { Formik, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { parseErrors } from '../../helpers/formErrors';
+import PasswordInput from '../../components/form/PasswordInput';
 
 const CUSTOMER_CREATE = gql`
   mutation customerCreate($input: CustomerCreateInput!) {
@@ -21,27 +21,27 @@ const CUSTOMER_CREATE = gql`
       }
     }
   }
-`
+`;
 
 const FormSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email address')
     .required('Email is Required'),
-  password: Yup.string().required('Password is Required'),
-})
+  password: Yup.string().required('Password is Required')
+});
 
 class Register extends React.Component {
   constructor(props) {
-    super(props)
-    this.firstInput = React.createRef()
+    super(props);
+    this.firstInput = React.createRef();
   }
 
   handleFirstInputFocus() {
-    this.firstInput.current.focus()
+    this.firstInput.current.focus();
   }
 
   componentDidMount() {
-    this.handleFirstInputFocus()
+    this.handleFirstInputFocus();
   }
 
   render() {
@@ -51,7 +51,7 @@ class Register extends React.Component {
         <Mutation
           mutation={CUSTOMER_CREATE}
           onError={errors => {
-            console.log(errors)
+            console.log(errors);
             // errors.forEach(error => {
             //     console.log(error)
             // })
@@ -59,7 +59,7 @@ class Register extends React.Component {
         >
           {(customerCreate, { data, loading, errors }) => {
             if (errors) {
-              console.log(errors)
+              console.log(errors);
               // errors.forEach(error => {
               //     formErrors.push(error.message);
               // })
@@ -70,7 +70,7 @@ class Register extends React.Component {
                 initialValues={{
                   form: '',
                   email: '',
-                  password: '',
+                  password: ''
                 }}
                 validationSchema={FormSchema}
                 onSubmit={(values, actions) => {
@@ -78,29 +78,28 @@ class Register extends React.Component {
                     variables: {
                       input: {
                         email: values.email,
-                        password: values.password,
-                      },
-                    },
+                        password: values.password
+                      }
+                    }
                   }).then(res => {
                     if (res.data.customerCreate.customer) {
                       // TODO: Push new Toaster Notification SUCCESS Registration
-                      navigate(`/account/login`)
+                      navigate(`/account/login`);
                     } else {
                       const errors = parseErrors(
                         res.data.customerCreate.customerUserErrors
-                      )
-                      actions.setErrors(errors)
+                      );
+                      actions.setErrors(errors);
                     }
-                  })
+                  });
                 }}
                 render={({
                   handleSubmit,
                   handleChange,
-                  handleBlur,
                   isSubmitting,
                   values,
                   errors,
-                  touched,
+                  touched
                 }) => (
                   <form onSubmit={handleSubmit}>
                     <ErrorMessage name="form" />
@@ -147,15 +146,15 @@ class Register extends React.Component {
                   </form>
                 )}
               />
-            )
+            );
           }}
         </Mutation>
         <Link to={`/account/login`}>Login</Link>
       </>
-    )
+    );
 
-    return <GuestLayout>{pageContent}</GuestLayout>
+    return <GuestLayout>{pageContent}</GuestLayout>;
   }
 }
 
-export default Register
+export default Register;

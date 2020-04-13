@@ -1,6 +1,6 @@
-import React from 'react'
-import AuthenticationWrapper from './AuthenticationWrapper'
-import { replace } from 'gatsby'
+import React from 'react';
+import AuthenticationWrapper from './AuthenticationWrapper';
+import { replace } from 'gatsby';
 
 const AccountLayout = ({ children }) => {
   return (
@@ -13,7 +13,7 @@ const AccountLayout = ({ children }) => {
           : null
       }
     </AuthenticationWrapper>
-  )
-}
+  );
+};
 
-export default AccountLayout
+export default AccountLayout;

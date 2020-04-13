@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const VariantSelector = ({ option, handleOptionChange }) => {
   return (
@@ -17,12 +17,12 @@ const VariantSelector = ({ option, handleOptionChange }) => {
                 value={value}
                 key={`${option.name}-${value}`}
               >{`${value}`}</option>
-            )
+            );
           })}
         </select>
       </label>
     </div>
-  )
-}
+  );
+};
 
-export default VariantSelector
+export default VariantSelector;

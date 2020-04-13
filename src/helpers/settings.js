@@ -5,5 +5,5 @@ export function getSetting(data, settingName) {
     data.allFile &&
     data.allFile.edges &&
     data.allFile.edges[0].node.childJson[settingName]
-  )
+  );
 }

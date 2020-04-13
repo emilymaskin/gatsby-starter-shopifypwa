@@ -1,8 +1,8 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import AuthenticationWrapper from './account/AuthenticationWrapper'
-import Logout from './account/logout'
-import CartLink from './account/CartLink'
+import React from 'react';
+import { Link } from 'gatsby';
+import AuthenticationWrapper from './account/AuthenticationWrapper';
+import Logout from './account/logout';
+import CartLink from './account/CartLink';
 
 const Header = ({ siteTitle }) => (
   <div
@@ -64,12 +64,12 @@ const Header = ({ siteTitle }) => (
                 )}
                 <CartLink />
               </div>
-            )
+            );
           }}
         </AuthenticationWrapper>
       </h1>
     </div>
   </div>
-)
+);
 
-export default Header
+export default Header;

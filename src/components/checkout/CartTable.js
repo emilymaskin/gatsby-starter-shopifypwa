@@ -1,9 +1,9 @@
-import React from 'react'
-import RemoveProduct from './RemoveProduct'
+import React from 'react';
+import RemoveProduct from './RemoveProduct';
 
 const CartTable = ({ products, subtotalPrice, totalTax, totalPrice }) => {
   if (!products) {
-    return <p>Your cart is currently empty.</p>
+    return <p>Your cart is currently empty.</p>;
   }
 
   let productList = products.edges.map(({ node }) => (
@@ -17,7 +17,7 @@ const CartTable = ({ products, subtotalPrice, totalTax, totalPrice }) => {
               <li>
                 {option.name}: {option.value}
               </li>
-            )
+            );
           })}
         </ul>
       </td>
@@ -33,19 +33,19 @@ const CartTable = ({ products, subtotalPrice, totalTax, totalPrice }) => {
         <RemoveProduct id={node.id} />
       </td>
     </tr>
-  ))
+  ));
 
   return (
     <>
       <table
         style={{
           display: 'flex',
-          flexWrap: 'wrap',
+          flexWrap: 'wrap'
         }}
       >
         <tbody
           style={{
-            width: '100%',
+            width: '100%'
           }}
         >
           {productList}
@@ -66,7 +66,7 @@ const CartTable = ({ products, subtotalPrice, totalTax, totalPrice }) => {
         </tfoot>
       </table>
     </>
-  )
-}
+  );
+};
 
-export default CartTable
+export default CartTable;

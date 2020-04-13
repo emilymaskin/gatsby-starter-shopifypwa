@@ -1,13 +1,13 @@
-import React from 'react'
-import gql from 'graphql-tag'
-import { Mutation } from 'react-apollo'
-import { Link, navigate } from 'gatsby'
-import { Formik, ErrorMessage } from 'formik'
-import * as Yup from 'yup'
-import { parseErrors } from '../../helpers/formErrors'
-import ContextConsumer from '../../layouts/context'
-import GuestLayout from '../../components/account/GuestLayout'
-import PasswordInput from '../../components/form/PasswordInput'
+import React from 'react';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
+import { Link } from 'gatsby';
+import { Formik, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { parseErrors } from '../../helpers/formErrors';
+import ContextConsumer from '../../layouts/context';
+import GuestLayout from '../../components/account/GuestLayout';
+import PasswordInput from '../../components/form/PasswordInput';
 
 const CUSTOMER_LOGIN = gql`
   mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
@@ -22,27 +22,27 @@ const CUSTOMER_LOGIN = gql`
       }
     }
   }
-`
+`;
 
 const FormSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email address')
     .required('Email is Required'),
-  password: Yup.string().required('Password is Required'),
-})
+  password: Yup.string().required('Password is Required')
+});
 
 class Login extends React.Component {
   constructor(props) {
-    super(props)
-    this.firstInput = React.createRef()
+    super(props);
+    this.firstInput = React.createRef();
   }
 
   handleFirstInputFocus() {
-    this.firstInput.current.focus()
+    this.firstInput.current.focus();
   }
 
   componentDidMount() {
-    this.handleFirstInputFocus()
+    this.handleFirstInputFocus();
   }
 
   render() {
@@ -59,7 +59,7 @@ class Login extends React.Component {
                       initialValues={{
                         form: '',
                         email: '',
-                        password: '',
+                        password: ''
                       }}
                       validationSchema={FormSchema}
                       onSubmit={(values, actions) => {
@@ -67,9 +67,9 @@ class Login extends React.Component {
                           variables: {
                             input: {
                               email: values.email,
-                              password: values.password,
-                            },
-                          },
+                              password: values.password
+                            }
+                          }
                         }).then(res => {
                           if (
                             res.data.customerAccessTokenCreate
@@ -78,16 +78,16 @@ class Login extends React.Component {
                             set({
                               customerAccessToken:
                                 res.data.customerAccessTokenCreate
-                                  .customerAccessToken,
-                            })
+                                  .customerAccessToken
+                            });
                           } else {
                             const errors = parseErrors(
                               res.data.customerAccessTokenCreate
                                 .customerUserErrors
-                            )
-                            actions.setErrors(errors)
+                            );
+                            actions.setErrors(errors);
                           }
-                        })
+                        });
                       }}
                       render={({
                         handleSubmit,
@@ -96,7 +96,7 @@ class Login extends React.Component {
                         isSubmitting,
                         values,
                         errors,
-                        touched,
+                        touched
                       }) => (
                         <form onSubmit={handleSubmit}>
                           <ErrorMessage name="form" />
@@ -142,20 +142,20 @@ class Login extends React.Component {
                         </form>
                       )}
                     />
-                  )
+                  );
                 }}
               </Mutation>
               <Link to={`/account/forgotpassword`}>Forgot Password</Link>
               <br />
               <Link to={`/account/register`}>Sign Up</Link>
             </>
-          )
+          );
         }}
       </ContextConsumer>
-    )
+    );
 
-    return <GuestLayout>{pageContent}</GuestLayout>
+    return <GuestLayout>{pageContent}</GuestLayout>;
   }
 }
 
-export default Login
+export default Login;
