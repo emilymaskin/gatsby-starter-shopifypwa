@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import { StyleSheet, css } from 'aphrodite/no-important';
 
 const ProductBox = ({ product }) => {
   const {
@@ -23,18 +24,9 @@ const ProductBox = ({ product }) => {
           <img
             src={images.edges[0].node.originalSrc}
             alt={images.edges[0].node.altText || ''}
-            style={{
-              maxWidth: '275px',
-            }}
+            className={css(styles.img)}
           />
         )}
-        {/* images.edges.length && images.edges.length > 1 &&
-                        <img src={images.edges[1].node.originalSrc}
-                            alt={images.edges[1].node.altText}
-                            style={{
-                                maxWidth: '275px',
-                            }}
-                        /> */}
         <h3>{title}</h3>
         <div>{`From ${minPrice}`}</div>
       </Link>
@@ -43,3 +35,9 @@ const ProductBox = ({ product }) => {
 };
 
 export default ProductBox;
+
+const styles = StyleSheet.create({
+  img: {
+    maxWidth: 200,
+  },
+});

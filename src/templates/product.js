@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import VariantSelector from '../components/VariantSelector';
 import AddToCart from '../components/AddToCart';
+import { StyleSheet, css } from 'aphrodite/no-important';
 
 const GET_PRODUCT = gql`
   query($handle: String!) {
@@ -27,7 +28,7 @@ class Product extends React.Component {
   componentDidMount() {
     this.props.data.shopify.shop.productByHandle.options.forEach(selector => {
       this.setState({
-        selectedOptions: { [selector.name]: selector.values[0] }
+        selectedOptions: { [selector.name]: selector.values[0] },
       });
     });
   }
@@ -62,13 +63,13 @@ class Product extends React.Component {
       selectedVariant: variants[selectedVariant].node,
       selectedVariantImage:
         variants[selectedVariant].node.image &&
-        variants[selectedVariant].node.image.originalSrc
+        variants[selectedVariant].node.image.originalSrc,
     });
   };
 
   handleQuantityChange = event => {
     this.setState({
-      selectedVariantQuantity: event.target.value
+      selectedVariantQuantity: event.target.value,
     });
   };
 
@@ -82,7 +83,7 @@ class Product extends React.Component {
 
     const price = new Intl.NumberFormat('en', {
       style: 'currency',
-      currency: product.priceRange.minVariantPrice.currencyCode
+      currency: product.priceRange.minVariantPrice.currencyCode,
     }).format(variant.price);
 
     let variantSelectors = product.options.map(option => {
@@ -98,16 +99,8 @@ class Product extends React.Component {
     return (
       <>
         <Link to={`/products/`}>‹ All Products</Link>
-        <div
-          style={{
-            display: 'flex'
-          }}
-        >
-          <div
-            style={{
-              width: '50%'
-            }}
-          >
+        <div className={css(styles.wrapper)}>
+          <div className={css(styles.productColumn)}>
             {product.images &&
               product.images.edges.map((image, i) => {
                 // return (
@@ -125,12 +118,7 @@ class Product extends React.Component {
                 );
               })}
           </div>
-          <div
-            style={{
-              width: '50%',
-              paddingLeft: '20px'
-            }}
-          >
+          <div className={css(styles.product)}>
             <h1>{product.title}</h1>
             <div>{price}</div>
             <p>{product.description}</p>
@@ -225,3 +213,16 @@ export const query = graphql`
     }
   }
 `;
+
+const styles = StyleSheet.create({
+  wrapper: {
+    display: 'flex',
+  },
+  productColumn: {
+    width: '50%',
+  },
+  product: {
+    width: '50%',
+    paddingLeft: 20,
+  },
+});

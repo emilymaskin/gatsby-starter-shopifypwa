@@ -7,6 +7,7 @@ module.exports = {
     title: 'Fresh Water Systems',
   },
   plugins: [
+    'gatsby-plugin-aphrodite',
     `gatsby-plugin-layout`,
     `gatsby-plugin-react-helmet`,
     {

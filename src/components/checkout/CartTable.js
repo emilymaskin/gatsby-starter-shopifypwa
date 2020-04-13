@@ -1,6 +1,8 @@
 import React from 'react';
 import RemoveProduct from './RemoveProduct';
 
+import { StyleSheet, css } from 'aphrodite/no-important';
+
 const CartTable = ({ products, subtotalPrice, totalTax, totalPrice }) => {
   if (!products) {
     return <p>Your cart is currently empty.</p>;
@@ -37,19 +39,8 @@ const CartTable = ({ products, subtotalPrice, totalTax, totalPrice }) => {
 
   return (
     <>
-      <table
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap'
-        }}
-      >
-        <tbody
-          style={{
-            width: '100%'
-          }}
-        >
-          {productList}
-        </tbody>
+      <table className={css(styles.table)}>
+        <tbody className={css(styles.tbody)}>{productList}</tbody>
         <tfoot>
           <tr>
             <td>Subtotal</td>
@@ -70,3 +61,13 @@ const CartTable = ({ products, subtotalPrice, totalTax, totalPrice }) => {
 };
 
 export default CartTable;
+
+const styles = StyleSheet.create({
+  table: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  tbody: {
+    width: '100%',
+  },
+});

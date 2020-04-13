@@ -8,12 +8,7 @@ const Products = ({ data }) => {
   return (
     <div>
       <h1>All Products</h1>
-      <ProductList
-        products={products}
-        style={{
-          display: 'grid',
-        }}
-      />
+      <ProductList products={products} />
     </div>
   );
 };
