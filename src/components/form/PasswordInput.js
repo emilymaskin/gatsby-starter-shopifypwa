@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 
-const PasswordInput = () => {
+const PasswordInput = props => {
   const [isPasswordMasked, setIsPasswordMasked] = useState(true);
 
-  setIsPasswordMasked(!isPasswordMasked);
+  const handlePasswordToggle = () => {
+    setIsPasswordMasked(!isPasswordMasked);
+  };
 
   return (
     <div>
-      <input type={isPasswordMasked ? 'password' : 'text'} {...this.props} />
-      <button type="button" onClick={this.handlePasswordToggle}>
+      <input type={isPasswordMasked ? 'password' : 'text'} {...props} />
+      <button type="button" onClick={handlePasswordToggle}>
         {isPasswordMasked ? 'show' : 'hide'}
       </button>
     </div>

@@ -2,27 +2,23 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import ProductList from '../components/ProductList';
 
-class Collection extends React.Component {
-  state = {};
+const Collection = ({ data }) => {
+  const {
+    title,
+    description,
+    image,
+    products,
+  } = data.shopify.shop.collectionByHandle;
 
-  render() {
-    const {
-      title,
-      description,
-      image,
-      products
-    } = this.props.data.shopify.shop.collectionByHandle;
-
-    return (
-      <>
-        <h1>{title}</h1>
-        {image && <img src={image.originalSrc} alt={image.altText || ''} />}
-        <div>{description}</div>
-        <ProductList products={products} />
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <h1>{title}</h1>
+      {image && <img src={image.originalSrc} alt={image.altText || ''} />}
+      <div>{description}</div>
+      <ProductList products={products} />
+    </>
+  );
+};
 
 export default Collection;
 

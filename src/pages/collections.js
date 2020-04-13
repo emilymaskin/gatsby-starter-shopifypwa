@@ -1,22 +1,20 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-class Collections extends React.Component {
-  render() {
-    const collections = this.props.data.shopify.shop.collections;
+const Collections = ({ data }) => {
+  const collections = data.shopify.shop.collections;
 
-    return (
-      <div>
-        <h1>All Collections</h1>
-        {collections.edges.map((edge, index) => (
-          <div key={index}>
-            <a href={`/collections/${edge.node.handle}`}>{edge.node.title}</a>
-          </div>
-        ))}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <h1>All Collections</h1>
+      {collections.edges.map((edge, index) => (
+        <div key={index}>
+          <a href={`/collections/${edge.node.handle}`}>{edge.node.title}</a>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default Collections;
 

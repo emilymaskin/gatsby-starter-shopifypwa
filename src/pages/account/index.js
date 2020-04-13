@@ -39,55 +39,24 @@ const CUSTOMER_INFO = gql`
   }
 `;
 
-class Account extends React.Component {
-  render() {
-    return (
-      <AccountLayout>
-        <h1>Account Dashboard</h1>
-        <ContextConsumer>
-          {({ store }) => {
-            return (
-              <Query
-                query={CUSTOMER_INFO}
-                variables={{
-                  customerAccessToken: store.customerAccessToken.accessToken
-                }}
-              >
-                {({ loading, error, data }) => {
-                  if (error) return <div>Error :(</div>;
-                  let greeting = `Welcome back!`;
+const Account = () => {
+  return (
+    <AccountLayout>
+      <h1>Account Dashboard</h1>
+      <ContextConsumer>
+        {({ store }) => {
+          return (
+            <Query
+              query={CUSTOMER_INFO}
+              variables={{
+                customerAccessToken: store.customerAccessToken.accessToken,
+              }}
+            >
+              {({ loading, error, data }) => {
+                if (error) return <div>Error :(</div>;
+                let greeting = `Welcome back!`;
 
-                  if (loading)
-                    return (
-                      <>
-                        <p>{greeting}</p>
-
-                        <h2>Account Info</h2>
-                        <div>
-                          <h3>Email</h3>
-                          <p></p>
-                        </div>
-                        {phone ? (
-                          <div>
-                            <h3>Phone</h3>
-                            <p></p>
-                          </div>
-                        ) : (
-                          ''
-                        )}
-                        <div>
-                          <h3>Order History</h3>
-                          <p></p>
-                        </div>
-                      </>
-                    );
-
-                  const { firstName, email, phone, orders } = data.customer;
-
-                  greeting = firstName
-                    ? `Welcome back ${firstName}!`
-                    : greeting;
-
+                if (loading)
                   return (
                     <>
                       <p>{greeting}</p>
@@ -95,34 +64,61 @@ class Account extends React.Component {
                       <h2>Account Info</h2>
                       <div>
                         <h3>Email</h3>
-                        <p>{email}</p>
+                        <p></p>
                       </div>
                       {phone ? (
                         <div>
                           <h3>Phone</h3>
-                          <p>{phone}</p>
+                          <p></p>
                         </div>
                       ) : (
                         ''
                       )}
                       <div>
                         <h3>Order History</h3>
-                        {orders.length ? (
-                          'TOOD: SHOW ORDERS'
-                        ) : (
-                          <p>You haven't placed any orders yet.</p>
-                        )}
+                        <p></p>
                       </div>
                     </>
                   );
-                }}
-              </Query>
-            );
-          }}
-        </ContextConsumer>
-      </AccountLayout>
-    );
-  }
-}
+
+                const { firstName, email, phone, orders } = data.customer;
+
+                greeting = firstName ? `Welcome back ${firstName}!` : greeting;
+
+                return (
+                  <>
+                    <p>{greeting}</p>
+
+                    <h2>Account Info</h2>
+                    <div>
+                      <h3>Email</h3>
+                      <p>{email}</p>
+                    </div>
+                    {phone ? (
+                      <div>
+                        <h3>Phone</h3>
+                        <p>{phone}</p>
+                      </div>
+                    ) : (
+                      ''
+                    )}
+                    <div>
+                      <h3>Order History</h3>
+                      {orders.length ? (
+                        'TOOD: SHOW ORDERS'
+                      ) : (
+                        <p>You haven't placed any orders yet.</p>
+                      )}
+                    </div>
+                  </>
+                );
+              }}
+            </Query>
+          );
+        }}
+      </ContextConsumer>
+    </AccountLayout>
+  );
+};
 
 export default Account;

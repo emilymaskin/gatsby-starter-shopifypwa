@@ -1,23 +1,22 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import ProductList from '../components/ProductList';
-class Products extends React.Component {
-  render() {
-    const products = this.props.data.shopify.shop.products;
 
-    return (
-      <div>
-        <h1>All Products</h1>
-        <ProductList
-          products={products}
-          style={{
-            display: 'grid',
-          }}
-        />
-      </div>
-    );
-  }
-}
+const Products = ({ data }) => {
+  const products = data.shopify.shop.products;
+
+  return (
+    <div>
+      <h1>All Products</h1>
+      <ProductList
+        products={products}
+        style={{
+          display: 'grid',
+        }}
+      />
+    </div>
+  );
+};
 
 export default Products;
 
