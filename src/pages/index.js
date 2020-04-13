@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
+import BestSellers from '../components/homepage/BestSellers';
 
 const IndexPage = ({ data }) => {
   const { products } = data.shopify.shop.collectionByHandle;
@@ -12,22 +13,7 @@ const IndexPage = ({ data }) => {
       <div>
         <Link to="/collections/">All Collections</Link>
       </div>
-
-      <div>
-        {products.edges.map((product, index) => {
-          const { title, handle, images } = product.node;
-          const { originalSrc, altText } = images.edges[0].node;
-
-          return (
-            <div key={index}>
-              <a href={`/products/${handle}`}>
-                <img src={originalSrc} alt={altText} />
-                <div>{title}</div>
-              </a>
-            </div>
-          );
-        })}
-      </div>
+      <BestSellers products={products} />
     </>
   );
 };
@@ -44,6 +30,21 @@ export const query = graphql`
               node {
                 title
                 handle
+                variants(first: 2) {
+                  edges {
+                    node {
+                      price
+                    }
+                  }
+                }
+                priceRange {
+                  maxVariantPrice {
+                    amount
+                  }
+                  minVariantPrice {
+                    amount
+                  }
+                }
                 images(first: 1, maxWidth: 200) {
                   edges {
                     node {
