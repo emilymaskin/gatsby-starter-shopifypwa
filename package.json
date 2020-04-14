@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "author": "Gil Greenberg <gilgreenberg@gmail.com>",
   "dependencies": {
+    "@brainhubeu/react-carousel": "^1.13.24",
     "aphrodite": "^2.4.0",
     "formik": "^1.3.0",
     "fsevents": "^2.1.2",

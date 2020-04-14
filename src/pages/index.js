@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import BestSellers from '../components/homepage/BestSellers';
 import Blog from '../components/homepage/Blog';
 import Brands from '../components/homepage/Brands';
+import Hero from '../components/homepage/Hero';
 import Top5 from '../components/homepage/Top5';
 
 const IndexPage = ({ data }) => {
@@ -13,10 +14,12 @@ const IndexPage = ({ data }) => {
     },
     allPrismicHomepageBrand,
     allPrismicTop5Categories,
+    allPrismicHeroSlide,
   } = data;
 
   return (
     <>
+      <Hero slides={allPrismicHeroSlide} />
       <Top5 collections={allPrismicTop5Categories} />
       <Brands brands={allPrismicHomepageBrand} />
       <BestSellers products={products} />
@@ -29,6 +32,24 @@ export default IndexPage;
 
 export const query = graphql`
   query homepageQuery {
+    allPrismicHeroSlide {
+      edges {
+        node {
+          data {
+            title
+            subtitle
+            desktop_image {
+              url
+            }
+            cta_text
+            cta_link
+            mobile_image {
+              url
+            }
+          }
+        }
+      }
+    }
     allPrismicTop5Categories {
       edges {
         node {

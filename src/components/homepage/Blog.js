@@ -56,6 +56,9 @@ export default Blog;
 const styles = StyleSheet.create({
   blog: {
     display: 'flex',
+    maxWidth: 1280,
+    margin: 'auto',
+    justifyContent: 'space-around',
   },
   article: {
     display: 'flex',

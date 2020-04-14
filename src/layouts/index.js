@@ -40,8 +40,7 @@ export default Layout;
 const styles = StyleSheet.create({
   wrapper: {
     margin: '0 auto',
-    maxWidth: 1280,
-    padding: '0px 1.0875rem 1.45rem',
+    padding: '0 0 1.45rem',
     paddingTop: 0,
   },
 });

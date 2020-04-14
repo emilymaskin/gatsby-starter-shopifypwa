@@ -46,6 +46,8 @@ export default BestSellers;
 const styles = StyleSheet.create({
   bestSellers: {
     display: 'flex',
+    maxWidth: 1280,
+    margin: 'auto',
   },
   product: {
     display: 'flex',

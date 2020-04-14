@@ -26,8 +26,10 @@ const styles = StyleSheet.create({
   collections: {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
-    gridGap: 20,
+    gridGap: 40,
     margin: 'auto',
+    maxWidth: 1360,
+    padding: '20px 0',
   },
   collection: {
     display: 'flex',
