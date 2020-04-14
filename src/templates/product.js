@@ -119,9 +119,9 @@ class Product extends React.Component {
               })}
           </div>
           <div className={css(styles.product)}>
-            <h1>{product.title}</h1>
+            <div className={css(styles.vendor)}>{product.vendor}</div>
+            <h1 className={css(styles.h1)}>{product.title}</h1>
             <div>{price}</div>
-            <p>{product.description}</p>
             <Query query={GET_PRODUCT} variables={{ handle: product.handle }}>
               {({ loading, error, data }) => {
                 if (loading) return <div>Loading...</div>;
@@ -130,31 +130,37 @@ class Product extends React.Component {
                 return (
                   <>
                     <h3>
-                      Stock Status:{' '}
                       {data &&
-                        data.shop.productByHandle &&
-                        data.shop.productByHandle.variants &&
-                        data.shop.productByHandle.variants.edges[0].node.availableForSale.toString()}
+                      data.shop.productByHandle &&
+                      data.shop.productByHandle.variants &&
+                      data.shop.productByHandle.variants.edges[0].node
+                        .availableForSale
+                        ? 'In Stock'
+                        : 'Out of Stock'}
                     </h3>
                   </>
                 );
               }}
             </Query>
-            {variantSelectors}
-            <div>
-              <label onChange={null}>
-                Quantity
-                <input
-                  min="1"
-                  type="number"
-                  defaultValue={variantQuantity}
-                  onChange={this.handleQuantityChange}
-                ></input>
-              </label>
+            <div className={css(styles.options)}>
+              <div className={css(styles.variants)}>{variantSelectors}</div>
+              <div>
+                <label onChange={null}>
+                  Quantity
+                  <input
+                    min="1"
+                    type="number"
+                    defaultValue={variantQuantity}
+                    onChange={this.handleQuantityChange}
+                    className={css(styles.input)}
+                  ></input>
+                </label>
+              </div>
             </div>
             <AddToCart variantId={variant.id} quantity={variantQuantity} />
           </div>
         </div>
+        <p>{product.description}</p>
       </>
     );
   }
@@ -170,6 +176,7 @@ export const query = graphql`
           title
           description
           handle
+          vendor
           priceRange {
             minVariantPrice {
               currencyCode
@@ -216,13 +223,32 @@ export const query = graphql`
 
 const styles = StyleSheet.create({
   wrapper: {
-    display: 'flex',
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gridGap: 40,
   },
   productColumn: {
-    width: '50%',
+    maxWidth: 400,
+    margin: 'auto',
   },
-  product: {
-    width: '50%',
-    paddingLeft: 20,
+  h1: {
+    fontSize: 28,
+  },
+  options: {
+    marginBottom: 20,
+    display: 'flex',
+  },
+  variants: {
+    marginRight: 40,
+  },
+  input: {
+    display: 'block',
+  },
+  vendor: {
+    color: '#aaa',
+    textTransform: 'uppercase',
+    fontWeight: 600,
+    fontSize: 14,
+    marginBottom: 20,
   },
 });

@@ -5,6 +5,7 @@ import ContextConsumer from '../layouts/context';
 import { ReturnFieldsCheckout } from '../helpers/gqlFragments';
 import { getSetting } from '../helpers/settings';
 import { StaticQuery, graphql } from 'gatsby';
+import { StyleSheet, css } from 'aphrodite/no-important';
 
 const ADD_TO_CART = gql`
   mutation AddToCart($input: CheckoutCreateInput!) {
@@ -124,6 +125,7 @@ const AddToCart = props => {
 
                         return (
                           <button
+                            className={css(styles.button)}
                             type="button"
                             onClick={e => {
                               e.preventDefault();
@@ -192,3 +194,19 @@ const AddToCart = props => {
 };
 
 export default AddToCart;
+
+const styles = StyleSheet.create({
+  button: {
+    background: '#00AB52',
+    color: '#fff',
+    WebkitAppearance: 'none',
+    border: 'none',
+    width: 300,
+    padding: 12,
+    textTransform: 'uppercase',
+    fontSize: 14,
+    fontWeight: 600,
+    letterSpacing: 1,
+    cursor: 'pointer',
+  },
+});

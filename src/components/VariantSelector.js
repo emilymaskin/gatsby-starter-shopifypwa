@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet, css } from 'aphrodite/no-important';
 
 const VariantSelector = ({ option, handleOptionChange }) => {
   return (
@@ -6,7 +7,7 @@ const VariantSelector = ({ option, handleOptionChange }) => {
       <label onChange={null}>
         {option.name}
         <select
-          className="Product__option"
+          className={css(styles.selector)}
           name={option.name}
           key={option.name}
           onChange={handleOptionChange}
@@ -26,3 +27,14 @@ const VariantSelector = ({ option, handleOptionChange }) => {
 };
 
 export default VariantSelector;
+
+const styles = StyleSheet.create({
+  selector: {
+    display: 'block',
+    borderRadius: 0,
+    WebkitAppearance: 'none',
+    background: 'transparent',
+    padding: '2px 5px',
+    minWidth: 300,
+  },
+});
