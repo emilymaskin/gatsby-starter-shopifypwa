@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import ProductList from '../components/ProductList';
+import { StyleSheet, css } from 'aphrodite/no-important';
 
 const Collection = ({ data }) => {
   const {
@@ -14,13 +15,20 @@ const Collection = ({ data }) => {
     <>
       <h1>{title}</h1>
       {image && <img src={image.originalSrc} alt={image.altText || ''} />}
-      <div>{description}</div>
+      <div className={css(styles.description)}>{description}</div>
       <ProductList products={products} />
     </>
   );
 };
 
 export default Collection;
+
+const styles = StyleSheet.create({
+  description: {
+    fontSize: 16,
+    marginBottom: 40,
+  },
+});
 
 export const query = graphql`
   query($handle: String!) {

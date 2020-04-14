@@ -19,7 +19,7 @@ const ProductBox = ({ product }) => {
 
   return (
     <li>
-      <Link to={`/products/${handle}`}>
+      <Link to={`/products/${handle}`} className={css(styles.link)}>
         {images.edges.length && (
           <img
             src={images.edges[0].node.originalSrc}
@@ -27,7 +27,7 @@ const ProductBox = ({ product }) => {
             className={css(styles.img)}
           />
         )}
-        <h3>{title}</h3>
+        <h3 className={css(styles.h3)}>{title}</h3>
         <div>{`From ${minPrice}`}</div>
       </Link>
     </li>
@@ -38,6 +38,20 @@ export default ProductBox;
 
 const styles = StyleSheet.create({
   img: {
-    maxWidth: 200,
+    maxWidth: 120,
+  },
+  link: {
+    border: '1px solid #ddd',
+    display: 'block',
+    padding: 30,
+    textAlign: 'center',
+    textDecoration: 'none',
+    color: '#158EC2',
+    height: 340,
+  },
+  h3: {
+    lineHeight: 1.4,
+    fontSize: 14,
+    padding: 20,
   },
 });
