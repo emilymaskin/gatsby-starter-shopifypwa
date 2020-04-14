@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
   link: {
     color: '#555',
     textDecoration: 'none',
-    fontFamily: "'futura-pt', 'Helvetica Neue', Helvetica, Arial, sans-serif",
     fontSize: 14,
     lineHeight: 1.4,
     fontWeight: 600,

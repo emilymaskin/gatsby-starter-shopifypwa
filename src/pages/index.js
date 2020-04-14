@@ -34,6 +34,10 @@ export const query = graphql`
         node {
           data {
             collection_handle
+            image {
+              alt
+              url
+            }
           }
         }
       }
