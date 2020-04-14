@@ -1,10 +1,12 @@
 import React from 'react';
+import H4 from '../elements/H4';
 import { Link } from 'gatsby';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
 const BestSellers = ({ products }) => {
   return (
     <>
+      <H4>Popular Products</H4>
       <div className={css(styles.bestSellers)}>
         {products.edges.map((product, index) => {
           const {
@@ -48,7 +50,9 @@ const styles = StyleSheet.create({
   product: {
     display: 'flex',
     flexDirection: 'column',
-    margin: 20,
+    padding: 20,
+    textAlign: 'center',
+    flex: 1,
   },
   link: {
     color: '#555',
@@ -58,7 +62,9 @@ const styles = StyleSheet.create({
     lineHeight: 1.4,
     fontWeight: 600,
   },
-  img: {
-    height: 172,
+  text: {
+    letterSpacing: 0.5,
+    textAlign: 'left',
+    marginTop: 20,
   },
 });

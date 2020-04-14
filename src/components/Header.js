@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   inner: {
     margin: '0 auto',
-    maxWidth: 960,
+    maxWidth: 1280,
     padding: '1rem',
   },
   h1: {

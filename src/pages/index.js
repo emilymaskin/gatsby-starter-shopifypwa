@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import BestSellers from '../components/homepage/BestSellers';
 import Blog from '../components/homepage/Blog';
 import Brands from '../components/homepage/Brands';
@@ -15,12 +15,6 @@ const IndexPage = ({ data }) => {
 
   return (
     <>
-      <div>
-        <Link to="/products/">All Products</Link>
-      </div>
-      <div>
-        <Link to="/collections/">All Collections</Link>
-      </div>
       <Brands brands={allPrismicHomepageBrand} />
       <BestSellers products={products} />
       <Blog blog={blogByHandle} />
@@ -69,7 +63,7 @@ export const query = graphql`
                   amount
                 }
               }
-              images(first: 1, maxWidth: 200) {
+              images(first: 1, maxWidth: 150) {
                 edges {
                   node {
                     originalSrc

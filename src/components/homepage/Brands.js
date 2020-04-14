@@ -1,12 +1,13 @@
 import React from 'react';
+import H4 from '../elements/H4';
 import { Link } from 'gatsby';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
 const Brands = ({ brands }) => {
   return (
     <>
-      <h2>Shop by Brand</h2>
-      <div className={css(styles.bestSellers)}>
+      <H4>Shop by Brand</H4>
+      <div className={css(styles.brands)}>
         {brands.edges.map((brand, index) => {
           const { brand_slug, brand_logo } = brand.node.data;
 
@@ -29,14 +30,17 @@ const Brands = ({ brands }) => {
 export default Brands;
 
 const styles = StyleSheet.create({
-  bestSellers: {
+  brands: {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
+    gridGap: 20,
+    maxWidth: 1000,
+    margin: 'auto',
   },
   brand: {
     display: 'flex',
     flexDirection: 'column',
-    margin: 20,
+    alignItems: 'center',
   },
   link: {
     color: '#555',

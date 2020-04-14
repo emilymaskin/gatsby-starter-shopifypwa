@@ -1,10 +1,11 @@
 import React from 'react';
+import H4 from '../elements/H4';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
 const Blog = ({ blog }) => {
   return (
     <>
-      <h2>{blog.title}</h2>
+      <H4>{blog.title}</H4>
       <div className={css(styles.blog)}>
         <div className={css(styles.article)}>
           <a
