@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     maxWidth: 1280,
     padding: '1rem',
     display: 'flex',
+    justifyContent: 'space-between',
   },
   logo: {
     height: 70,
@@ -67,12 +68,15 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   links: {
-    marginLeft: 'auto',
     fontSize: 14,
+    display: 'flex',
   },
   link: {
     color: colors.textGray,
     fontWeight: 600,
     textDecoration: 'none',
+    ':hover': {
+      color: colors.blue,
+    },
   },
 });
