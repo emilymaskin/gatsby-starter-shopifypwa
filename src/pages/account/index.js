@@ -53,6 +53,7 @@ const Account = () => {
               }}
             >
               {({ loading, error, data }) => {
+                const { firstName, email, phone, orders } = data.customer;
                 if (error) return <div>Error :(</div>;
                 let greeting = `Welcome back!`;
 
@@ -80,8 +81,6 @@ const Account = () => {
                       </div>
                     </>
                   );
-
-                const { firstName, email, phone, orders } = data.customer;
 
                 greeting = firstName ? `Welcome back ${firstName}!` : greeting;
 

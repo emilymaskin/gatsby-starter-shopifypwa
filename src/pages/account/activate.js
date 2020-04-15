@@ -32,9 +32,9 @@ const FormSchema = Yup.object().shape({
   passwordVerification: Yup.string()
     .oneOf(
       [Yup.ref('password')],
-      'Password and confirmation must been the same'
+      'Password and confirmation must been the same',
     )
-    .required('Password Confirmation is Required')
+    .required('Password Confirmation is Required'),
 });
 
 class Activate extends React.Component {
@@ -47,25 +47,22 @@ class Activate extends React.Component {
     this.firstInput.current.focus();
   }
 
-  componentDidMount() {
-    this.handleFirstInputFocus();
-  }
-
   state = {
     customerId: '',
-    activationToken: ''
+    activationToken: '',
   };
 
   componentDidMount() {
+    this.handleFirstInputFocus();
     const params = new URLSearchParams(document.location.search.substring(1));
     const customerId = window.btoa(
-      `gid://shopify/Customer/${params.get('id')}`
+      `gid://shopify/Customer/${params.get('id')}`,
     );
     const activationToken = params.get('token');
 
     this.setState({
       customerId,
-      activationToken
+      activationToken,
     });
   }
 
@@ -84,7 +81,7 @@ class Activate extends React.Component {
                       initialValues={{
                         form: '',
                         password: '',
-                        passwordVerification: ''
+                        passwordVerification: '',
                       }}
                       validationSchema={FormSchema}
                       onSubmit={(values, actions) => {
@@ -93,18 +90,18 @@ class Activate extends React.Component {
                             id: this.state.customerId,
                             input: {
                               activationToken: this.state.activationToken,
-                              password: values.password
-                            }
-                          }
+                              password: values.password,
+                            },
+                          },
                         }).then(res => {
                           if (res.data.customerActivate.customerAccessToken) {
                             set({
                               customerAccessToken:
-                                res.data.customerActivate.customerAccessToken
+                                res.data.customerActivate.customerAccessToken,
                             });
                           } else {
                             const errors = parseErrors(
-                              res.data.customerActivate.userErrors
+                              res.data.customerActivate.userErrors,
                             );
                             actions.setErrors(errors);
                           }
@@ -117,7 +114,7 @@ class Activate extends React.Component {
                         isSubmitting,
                         values,
                         errors,
-                        touched
+                        touched,
                       }) => (
                         <form onSubmit={handleSubmit}>
                           <ErrorMessage name="form" />

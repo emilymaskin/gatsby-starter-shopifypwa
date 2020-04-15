@@ -32,9 +32,9 @@ const FormSchema = Yup.object().shape({
   passwordVerification: Yup.string()
     .oneOf(
       [Yup.ref('password')],
-      'Password and confirmation must been the same'
+      'Password and confirmation must been the same',
     )
-    .required('Password Confirmation is Required')
+    .required('Password Confirmation is Required'),
 });
 
 class ResetPassword extends React.Component {
@@ -47,25 +47,23 @@ class ResetPassword extends React.Component {
     this.firstInput.current.focus();
   }
 
-  componentDidMount() {
-    this.handleFirstInputFocus();
-  }
-
   state = {
     customerId: '',
-    resetToken: ''
+    resetToken: '',
   };
 
   componentDidMount() {
+    this.handleFirstInputFocus();
+
     const params = new URLSearchParams(document.location.search.substring(1));
     const customerId = window.btoa(
-      `gid://shopify/Customer/${params.get('id')}`
+      `gid://shopify/Customer/${params.get('id')}`,
     );
     const resetToken = params.get('token');
 
     this.setState({
       customerId: customerId,
-      resetToken: resetToken
+      resetToken: resetToken,
     });
   }
 
@@ -83,7 +81,7 @@ class ResetPassword extends React.Component {
                       initialValues={{
                         form: '',
                         password: '',
-                        passwordVerification: ''
+                        passwordVerification: '',
                       }}
                       validationSchema={FormSchema}
                       onSubmit={(values, actions) => {
@@ -92,18 +90,18 @@ class ResetPassword extends React.Component {
                             id: this.state.customerId,
                             input: {
                               resetToken: this.state.resetToken,
-                              password: values.password
-                            }
-                          }
+                              password: values.password,
+                            },
+                          },
                         }).then(res => {
                           if (res.data.customerReset.customerAccessToken) {
                             set({
                               customerAccessToken:
-                                res.data.customerReset.customerAccessToken
+                                res.data.customerReset.customerAccessToken,
                             });
                           } else {
                             const errors = parseErrors(
-                              res.data.customerReset.userErrors
+                              res.data.customerReset.userErrors,
                             );
                             actions.setErrors(errors);
                           }
@@ -115,7 +113,7 @@ class ResetPassword extends React.Component {
                         isSubmitting,
                         values,
                         errors,
-                        touched
+                        touched,
                       }) => (
                         <form onSubmit={handleSubmit}>
                           <ErrorMessage name="form" />
