@@ -6,6 +6,7 @@ import { ReturnFieldsCheckout } from '../helpers/gqlFragments';
 import { getSetting } from '../helpers/settings';
 import { StaticQuery, graphql } from 'gatsby';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import { colors } from '../utils/constants';
 
 const ADD_TO_CART = gql`
   mutation AddToCart($input: CheckoutCreateInput!) {
@@ -64,7 +65,7 @@ const ASSOCIATE_CUSTOMER_CHECKOUT = gql`
   ${ReturnFieldsCheckout}
 `;
 
-const AddToCart = props => {
+const AddToCart = (props) => {
   return (
     <StaticQuery
       query={graphql`
@@ -85,7 +86,7 @@ const AddToCart = props => {
           }
         }
       `}
-      render={data => {
+      render={(data) => {
         const canAddtoCart = getSetting(data, 'canAdd');
         if (!canAddtoCart) {
           return null;
@@ -96,14 +97,14 @@ const AddToCart = props => {
             {({ set, store }) => {
               return (
                 <Mutation mutation={ASSOCIATE_CUSTOMER_CHECKOUT}>
-                  {associateCustomer => (
+                  {(associateCustomer) => (
                     <Mutation
                       mutation={
                         store.checkout && store.checkout.id
                           ? ADD_TO_EXISTING_CART
                           : ADD_TO_CART
                       }
-                      onCompleted={res => {
+                      onCompleted={(res) => {
                         let { checkout } =
                           res.checkoutLineItemsAdd || res.checkoutCreate;
                         if (checkout.webUrl !== undefined) {
@@ -127,7 +128,7 @@ const AddToCart = props => {
                           <button
                             className={css(styles.button)}
                             type="button"
-                            onClick={e => {
+                            onClick={(e) => {
                               e.preventDefault();
 
                               let mutationInput = {
@@ -144,7 +145,7 @@ const AddToCart = props => {
 
                                 addToCart({
                                   variables: mutationInput,
-                                }).then(res => {
+                                }).then((res) => {
                                   if (
                                     !res.data.checkoutLineItemsAdd.userErrors
                                       .length &&
@@ -197,8 +198,8 @@ export default AddToCart;
 
 const styles = StyleSheet.create({
   button: {
-    background: '#00AB52',
-    color: '#fff',
+    background: colors.green,
+    color: colors.white,
     WebkitAppearance: 'none',
     border: 'none',
     width: 300,

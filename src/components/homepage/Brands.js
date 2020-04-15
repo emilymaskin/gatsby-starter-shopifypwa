@@ -2,6 +2,7 @@ import React from 'react';
 import H4 from '../elements/H4';
 import { Link } from 'gatsby';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import { colors } from '../../utils/constants';
 
 const Brands = ({ brands }) => {
   return (
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   link: {
-    color: '#555',
+    color: colors.textGray,
     textDecoration: 'none',
     fontSize: 14,
     lineHeight: 1.4,

@@ -1,6 +1,7 @@
 import React from 'react';
 import H4 from '../elements/H4';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import { colors } from '../../utils/constants';
 
 const Blog = ({ blog }) => {
   return (
@@ -58,7 +59,7 @@ export default Blog;
 
 const styles = StyleSheet.create({
   blog: {
-    background: '#F4F4F4',
+    background: colors.lightestGray,
     padding: 40,
   },
   inner: {
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   link: {
-    color: '#555',
+    color: colors.textGray,
     textDecoration: 'none',
     fontSize: 14,
     lineHeight: 1.4,

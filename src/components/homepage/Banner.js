@@ -1,8 +1,10 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import { colors } from '../../utils/constants';
 
 const Banner = ({ content }) => {
   const { text, link } = content.edges[0].node.data;
+
   return (
     <a href={link.url} target={link.target} className={css(styles.banner)}>
       {text}
@@ -14,8 +16,8 @@ export default Banner;
 
 const styles = StyleSheet.create({
   banner: {
-    background: '#0077C0',
-    color: '#fff',
+    background: colors.blue,
+    color: colors.white,
     textAlign: 'center',
     fontSize: 12,
     padding: 5,

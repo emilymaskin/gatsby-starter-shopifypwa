@@ -5,6 +5,7 @@ import { Query } from 'react-apollo';
 import VariantSelector from '../components/VariantSelector';
 import AddToCart from '../components/AddToCart';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import { colors } from '../utils/constants';
 
 const GET_PRODUCT = gql`
   query($handle: String!) {
@@ -26,24 +27,24 @@ class Product extends React.Component {
   state = {};
 
   componentDidMount() {
-    this.props.data.shopify.shop.productByHandle.options.forEach(selector => {
+    this.props.data.shopify.shop.productByHandle.options.forEach((selector) => {
       this.setState({
         selectedOptions: { [selector.name]: selector.values[0] },
       });
     });
   }
 
-  handleOptionChange = event => {
+  handleOptionChange = (event) => {
     const target = event.target;
     const variants = this.props.data.shopify.shop.productByHandle.variants
       .edges;
     let selectedOptions = this.state.selectedOptions;
     selectedOptions[target.name] = target.value;
 
-    const selectedVariant = variants.findIndex(variant => {
+    const selectedVariant = variants.findIndex((variant) => {
       let hasFoundVariant = false;
 
-      variant.node.selectedOptions.forEach(selectedOption => {
+      variant.node.selectedOptions.forEach((selectedOption) => {
         if (
           selectedOptions[selectedOption.name] ===
           selectedOption.value.valueOf()
@@ -67,7 +68,7 @@ class Product extends React.Component {
     });
   };
 
-  handleQuantityChange = event => {
+  handleQuantityChange = (event) => {
     this.setState({
       selectedVariantQuantity: event.target.value,
     });
@@ -86,7 +87,7 @@ class Product extends React.Component {
       currency: product.priceRange.minVariantPrice.currencyCode,
     }).format(variant.price);
 
-    let variantSelectors = product.options.map(option => {
+    let variantSelectors = product.options.map((option) => {
       return (
         <VariantSelector
           handleOptionChange={this.handleOptionChange}
@@ -245,7 +246,7 @@ const styles = StyleSheet.create({
     display: 'block',
   },
   vendor: {
-    color: '#aaa',
+    color: colors.textLightGray,
     textTransform: 'uppercase',
     fontWeight: 600,
     fontSize: 14,

@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Carousel, { Dots } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
+import { colors } from '../../utils/constants';
 
 const Hero = ({ slides }) => {
   const [slide, setSlide] = useState(0);
 
-  const onChange = value => setSlide(value);
+  const onChange = (value) => setSlide(value);
 
   return (
     <div className={css(styles.carouselWrapper, styles.desktop)}>
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   content: {
-    color: '#fff',
+    color: colors.white,
     position: 'absolute',
     top: '50%',
     transform: 'translateY(-50%)',
@@ -87,8 +88,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    background: '#0077C0',
-    color: '#fff',
+    background: colors.blue,
+    color: colors.white,
     textDecoration: 'none',
     fontSize: 13,
     fontWeight: 600,

@@ -2,6 +2,7 @@ import React from 'react';
 import H4 from '../elements/H4';
 import { Link } from 'gatsby';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import { colors } from '../../utils/constants';
 
 const BestSellers = ({ products }) => {
   return (
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   link: {
-    color: '#555',
+    color: colors.textGray,
     textDecoration: 'none',
     fontSize: 14,
     lineHeight: 1.4,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import { colors } from '../../utils/constants';
 
 const Top5 = ({ collections }) => (
   <div className={css(styles.collections)}>
@@ -32,6 +33,7 @@ const styles = StyleSheet.create({
     padding: '40px 0',
   },
   collection: {
+    color: colors.textGray,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -40,7 +42,6 @@ const styles = StyleSheet.create({
   },
   title: {
     position: 'absolute',
-    color: '#555',
     padding: 10,
     fontWeight: 600,
     fontSize: 16,
@@ -49,8 +50,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     right: 0,
-    background: '#0077C0',
-    color: '#fff',
+    background: colors.blue,
+    color: colors.white,
     padding: '12px 20px',
     fontSize: 16,
   },

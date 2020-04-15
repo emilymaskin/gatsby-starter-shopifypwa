@@ -5,6 +5,7 @@ import Logout from './account/logout';
 import CartLink from './account/CartLink';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import logoImg from '../images/logo.webp';
+import { colors } from '../utils/constants';
 
 const Header = ({ siteTitle }) => (
   <div className={css(styles.wrapper)}>
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   link: {
-    color: '#555',
+    color: colors.textGray,
     fontWeight: 600,
     textDecoration: 'none',
   },

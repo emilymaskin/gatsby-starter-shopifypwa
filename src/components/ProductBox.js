@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import { colors } from '../utils/constants';
 
 const ProductBox = ({ product }) => {
   const {
@@ -41,12 +42,12 @@ const styles = StyleSheet.create({
     maxWidth: 120,
   },
   link: {
-    border: '1px solid #ddd',
+    border: `1px solid ${colors.grayBorder}`,
     display: 'block',
     padding: 30,
     textAlign: 'center',
     textDecoration: 'none',
-    color: '#158EC2',
+    color: colors.lightBlue,
     height: 340,
   },
   h3: {
