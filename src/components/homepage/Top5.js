@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     gridGap: 40,
     margin: 'auto',
     maxWidth: 1360,
-    padding: '20px 0',
+    padding: '40px 0',
   },
   collection: {
     display: 'flex',

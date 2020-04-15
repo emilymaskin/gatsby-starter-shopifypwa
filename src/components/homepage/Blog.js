@@ -4,14 +4,15 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 
 const Blog = ({ blog }) => {
   return (
-    <>
+    <div className={css(styles.blog)}>
       <H4>{blog.title}</H4>
-      <div className={css(styles.blog)}>
+      <div className={css(styles.inner)}>
         <div className={css(styles.article)}>
           <a
             href={blog.article1.url}
             className={css(styles.link)}
             target="_blank"
+            rel="noopener noreferrer"
           >
             <img
               src={blog.article1.image.originalSrc}
@@ -25,6 +26,7 @@ const Blog = ({ blog }) => {
             href={blog.article2.url}
             className={css(styles.link)}
             target="_blank"
+            rel="noopener noreferrer"
           >
             <img
               src={blog.article2.image.originalSrc}
@@ -38,6 +40,7 @@ const Blog = ({ blog }) => {
             href={blog.article3.url}
             className={css(styles.link)}
             target="_blank"
+            rel="noopener noreferrer"
           >
             <img
               src={blog.article3.image.originalSrc}
@@ -47,7 +50,7 @@ const Blog = ({ blog }) => {
           </a>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
@@ -55,8 +58,12 @@ export default Blog;
 
 const styles = StyleSheet.create({
   blog: {
-    display: 'flex',
+    background: '#F4F4F4',
+    padding: 40,
+  },
+  inner: {
     maxWidth: 1280,
+    display: 'flex',
     margin: 'auto',
     justifyContent: 'space-around',
   },

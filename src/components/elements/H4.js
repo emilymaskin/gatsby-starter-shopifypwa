@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   h4: {
     textAlign: 'center',
     fontSize: 28,
-    margin: '80px auto',
+    margin: '40px auto',
     color: '#555',
   },
 });

@@ -2,7 +2,8 @@ import Helmet from 'react-helmet';
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import { ContextProviderComponent } from './context';
-import Header from '../components/header';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import '../components/layout.css';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
@@ -30,6 +31,7 @@ const Layout = ({ children }) => (
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
         <div className={css(styles.wrapper)}>{children}</div>
+        <Footer />
       </ContextProviderComponent>
     )}
   />
