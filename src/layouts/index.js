@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet';
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import { ContextProviderComponent } from './context';
+import Banner from '../components/homepage/Banner';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../components/layout.css';
@@ -14,6 +15,19 @@ const Layout = ({ children }) => (
         site {
           siteMetadata {
             title
+          }
+        }
+        allPrismicTopBanner {
+          edges {
+            node {
+              data {
+                text
+                link {
+                  url
+                  target
+                }
+              }
+            }
           }
         }
       }
@@ -29,6 +43,7 @@ const Layout = ({ children }) => (
         >
           <html lang="en" />
         </Helmet>
+        <Banner content={data.allPrismicTopBanner} />
         <Header siteTitle={data.site.siteMetadata.title} />
         <div className={css(styles.wrapper)}>{children}</div>
         <Footer />
