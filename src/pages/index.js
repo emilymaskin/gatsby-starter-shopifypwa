@@ -5,6 +5,7 @@ import Blog from '../components/homepage/Blog';
 import Brands from '../components/homepage/Brands';
 import Hero from '../components/homepage/Hero';
 import Top5 from '../components/homepage/Top5';
+import TwoColCTA from '../components/homepage/TwoColCTA';
 
 const IndexPage = ({ data }) => {
   const {
@@ -15,6 +16,7 @@ const IndexPage = ({ data }) => {
     allPrismicHomepageBrand,
     allPrismicTop5Categories,
     allPrismicHeroSlide,
+    allPrismicHomepage2ColumnCta,
   } = data;
 
   return (
@@ -22,6 +24,7 @@ const IndexPage = ({ data }) => {
       <Hero slides={allPrismicHeroSlide} />
       <Top5 collections={allPrismicTop5Categories} />
       <Brands brands={allPrismicHomepageBrand} />
+      <TwoColCTA content={allPrismicHomepage2ColumnCta} />
       <BestSellers products={products} />
       <Blog blog={blogByHandle} />
     </>
@@ -32,6 +35,24 @@ export default IndexPage;
 
 export const query = graphql`
   query homepageQuery {
+    allPrismicHomepage2ColumnCta {
+      edges {
+        node {
+          data {
+            title
+            description
+            image {
+              url
+            }
+            button_text
+            link {
+              url
+              target
+            }
+          }
+        }
+      }
+    }
     allPrismicHeroSlide {
       edges {
         node {
