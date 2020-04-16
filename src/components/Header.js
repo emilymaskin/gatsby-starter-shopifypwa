@@ -1,11 +1,20 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import AuthenticationWrapper from './account/AuthenticationWrapper';
+import Search from './search';
 import Logout from './account/logout';
 import CartLink from './account/CartLink';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import logoImg from '../images/logo.webp';
 import { colors } from '../utils/constants';
+
+const searchIndices = [
+  {
+    name: `shopify_products`,
+    title: `shopify_products`,
+    hitComp: `ProductHit`,
+  },
+];
 
 const Header = ({ siteTitle }) => (
   <div className={css(styles.wrapper)}>
@@ -15,6 +24,7 @@ const Header = ({ siteTitle }) => (
           <img src={logoImg} className={css(styles.logo)} alt={siteTitle} />
         </Link>
       </h1>
+      <Search collapse indices={searchIndices} />
       <AuthenticationWrapper>
         {({ isAuthenticated }) => {
           return (

@@ -5,10 +5,12 @@
   "author": "Gil Greenberg <gilgreenberg@gmail.com>",
   "dependencies": {
     "@brainhubeu/react-carousel": "^1.13.24",
+    "algoliasearch": "^4.1.0",
     "aphrodite": "^2.4.0",
     "formik": "^2.1.4",
     "fsevents": "^2.1.2",
     "gatsby": "^2.0.46",
+    "gatsby-plugin-algolia": "^0.7.0",
     "gatsby-plugin-aphrodite": "^2.0.5",
     "gatsby-plugin-apollo-shopify": "^1.0.2",
     "gatsby-plugin-layout": "^1.0.1",
@@ -30,6 +32,7 @@
     "react-apollo": "^2.1.11",
     "react-dom": "^16.5.1",
     "react-helmet": "^6.0.0",
+    "react-instantsearch-dom": "^6.4.0",
     "yup": "^0.28.3"
   },
   "keywords": [
