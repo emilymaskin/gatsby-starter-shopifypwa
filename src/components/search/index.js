@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef } from 'react';
+import React, { useState } from 'react';
 import {
   InstantSearch,
   Index,
@@ -24,40 +24,23 @@ const Results = connectStateResults(
         </div>
       );
     }
-    return `No results for '${state.query}'`;
+    return (
+      <div className={css(styles.results, state.query ? styles.show : null)}>
+        No results for {state.query}
+      </div>
+    );
   },
 );
 
-const useClickOutside = (ref, handler, events) => {
-  if (!events) events = [`mousedown`, `touchstart`];
-  const detectClickOutside = (event) =>
-    !ref.current.contains(event.target) && handler();
-  useEffect(() => {
-    for (const event of events)
-      document.addEventListener(event, detectClickOutside);
-    return () => {
-      for (const event of events)
-        document.removeEventListener(event, detectClickOutside);
-    };
-  });
-};
-
 export default function Search({ indices, collapse, hitsAsGrid }) {
-  const ref = createRef();
-  const [query, setQuery] = useState(``);
   const [focus, setFocus] = useState(false);
   const searchClient = algoliasearch(
     process.env.GATSBY_ALGOLIA_APP_ID,
     process.env.GATSBY_ALGOLIA_SEARCH_KEY,
   );
 
-  //useClickOutside(ref, () => setFocus(false));
   return (
-    <InstantSearch
-      searchClient={searchClient}
-      indexName={indices[0].name}
-      onSearchStateChange={({ query }) => setQuery(query)}
-    >
+    <InstantSearch searchClient={searchClient} indexName={indices[0].name}>
       <div className={css(styles.searchWrapper)}>
         <Input onFocus={() => setFocus(true)} {...{ collapse, focus }} />
         {indices.map(({ name, hitComp }) => (
@@ -80,11 +63,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     display: 'none',
     height: 300,
-    width: 200,
+    width: 500,
+    left: -100,
     zIndex: 1000,
     background: colors.white,
     padding: 20,
-    overflow: 'hidden',
+    overflow: 'scroll',
     border: `1px solid ${colors.grayBorder}`,
   },
   show: {

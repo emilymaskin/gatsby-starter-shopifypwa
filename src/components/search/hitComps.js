@@ -5,15 +5,13 @@ import { colors } from '../../utils/constants';
 
 export const ProductHit = (clickHandler) => ({ hit }) => {
   return (
-    <div>
-      <Link
-        to={`/products/${hit.handle}`}
-        onClick={clickHandler}
-        className={css(styles.result)}
-      >
-        {hit.title}
-      </Link>
-    </div>
+    <Link
+      to={`/products/${hit.handle}`}
+      onClick={clickHandler}
+      className={css(styles.result)}
+    >
+      {hit.title}
+    </Link>
   );
 };
 
@@ -22,6 +20,5 @@ const styles = StyleSheet.create({
     textDecoration: 'none',
     color: colors.textGray,
     fontSize: 14,
-    lineHeight: 1,
   },
 });

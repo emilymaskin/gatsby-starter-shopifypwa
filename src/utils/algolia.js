@@ -18,20 +18,9 @@ const productQuery = `{
   }
 }`;
 
-const flatten = (arr) =>
-  arr.map(({ node: { frontmatter, ...rest } }) => ({
-    ...frontmatter,
-    ...rest,
-  }));
-const settings = { attributesToSnippet: [`excerpt:20`] };
-
-const queries = [
+export const queries = [
   {
     query: productQuery,
-    transformer: ({ data }) => flatten(data.products.edges),
     indexName: `shopfiy_product`,
-    settings,
   },
 ];
-
-module.exports = queries;
