@@ -1,0 +1,40 @@
+{
+  "Main": {
+    "title": {
+      "type": "Text",
+      "config": {
+        "label": "Title"
+      }
+    },
+    "description": {
+      "type": "Text",
+      "config": {
+        "label": "Description"
+      }
+    },
+    "button_text": {
+      "type": "Text",
+      "config": {
+        "label": "Button text"
+      }
+    },
+    "link": {
+      "type": "Link",
+      "config": {
+        "allowTargetBlank": true,
+        "label": "Link"
+      }
+    },
+    "image": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 675,
+          "height": 425
+        },
+        "thumbnails": [],
+        "label": "Image"
+      }
+    }
+  }
+}

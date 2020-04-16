@@ -1,0 +1,50 @@
+{
+  "Main": {
+    "title": {
+      "type": "Text",
+      "config": {
+        "label": "Title"
+      }
+    },
+    "subtitle": {
+      "type": "Text",
+      "config": {
+        "label": "Subtitle"
+      }
+    },
+    "cta_text": {
+      "type": "Text",
+      "config": {
+        "label": "CTA text"
+      }
+    },
+    "cta_link": {
+      "type": "Text",
+      "config": {
+        "label": "CTA link"
+      }
+    },
+    "desktop_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 1800,
+          "height": 480
+        },
+        "thumbnails": [],
+        "label": "Desktop image"
+      }
+    },
+    "mobile_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 767,
+          "height": 820
+        },
+        "thumbnails": [],
+        "label": "Mobile image"
+      }
+    }
+  }
+}

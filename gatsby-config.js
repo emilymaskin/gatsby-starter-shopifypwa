@@ -31,6 +31,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `./src/images/`,
+      },
+    },
+    {
       resolve: `gatsby-source-graphql`,
       options: {
         typeName: 'Shopify',
@@ -61,13 +68,17 @@ module.exports = {
     {
       resolve: 'gatsby-source-prismic',
       options: {
-        repositoryName: 'fwsco', // (REQUIRED, replace with your own)
-        accessToken:
-          'MC5YcFRpV3hBQUFPN0c0Y19a.77-977-9Ru-_ve-_vSFWeRbvv73vv73vv709OlttQkMd77-977-9MO-_ve-_ve-_vXAwce-_vX_vv719', // (optional API access token)
+        repositoryName: 'fwsco',
+        accessToken: process.env.PRISMIC_TOKEN,
         schemas: {
           blog_post: require('./src/schemas/blog_post.json'),
           homepage_brand: require('./src/schemas/homepage_brand.json'),
+          hero_slide: require('./src/schemas/hero_slide.json'),
+          homepage_2_column_cta: require('./src/schemas/homepage_2_column_cta.json'),
+          top_5_categories: require('./src/schemas/top_5_categories.json'),
+          top_banner: require('./src/schemas/top_banner.json'),
         },
+        shouldDownloadImage: () => true,
       },
     },
     {
@@ -78,5 +89,7 @@ module.exports = {
         chunkSize: 10000, // default: 1000
       },
     },
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
   ],
 };

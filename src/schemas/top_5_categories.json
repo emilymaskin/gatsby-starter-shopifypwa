@@ -1,0 +1,22 @@
+{
+  "Main": {
+    "collection_handle": {
+      "type": "Text",
+      "config": {
+        "label": "Collection Handle",
+        "placeholder": "e.g. water-filter-systems"
+      }
+    },
+    "image": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 250,
+          "height": 230
+        },
+        "thumbnails": [],
+        "label": "Image"
+      }
+    }
+  }
+}

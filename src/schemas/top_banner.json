@@ -1,0 +1,17 @@
+{
+  "Main": {
+    "text": {
+      "type": "Text",
+      "config": {
+        "label": "Text"
+      }
+    },
+    "link": {
+      "type": "Link",
+      "config": {
+        "allowTargetBlank": true,
+        "label": "Link (optional)"
+      }
+    }
+  }
+}
