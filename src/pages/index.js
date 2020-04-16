@@ -42,7 +42,13 @@ export const query = graphql`
             title
             description
             image {
-              url
+              localFile {
+                childImageSharp {
+                  fluid(quality: 90, maxWidth: 675) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
             }
             button_text
             link {

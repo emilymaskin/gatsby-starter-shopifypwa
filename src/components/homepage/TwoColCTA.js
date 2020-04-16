@@ -1,13 +1,21 @@
 import React from 'react';
+import BackgroundImage from 'gatsby-background-image';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { colors } from '../../utils/constants';
+import idx from 'idx';
 
 const TwoColCTA = ({ content }) => {
   return (
     <div className={css(styles.wrapper)}>
       {content.edges.map((col, index) => (
-        <div className={css(styles.col)} key={index}>
-          <img src={col.node.data.image.url} alt="" />
+        <BackgroundImage
+          className={css(styles.image)}
+          fluid={idx(
+            col.node.data.image,
+            (_) => _.localFile.childImageSharp.fluid,
+          )}
+          key={index}
+        >
           <div className={css(styles.content)}>
             <div className={css(styles.title)}>{col.node.data.title}</div>
             <div className={css(styles.text)}>{col.node.data.description}</div>
@@ -20,7 +28,7 @@ const TwoColCTA = ({ content }) => {
               {col.node.data.button_text}
             </a>
           </div>
-        </div>
+        </BackgroundImage>
       ))}
     </div>
   );
@@ -37,20 +45,24 @@ const styles = StyleSheet.create({
     gridGap: 40,
     gridTemplateColumns: '1fr 1fr',
     color: colors.textGray,
+    paddingBottom: 150,
   },
-  col: {
-    position: 'relative',
-    paddingBottom: 100,
+  image: {
+    width: '100%',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    display: 'flex',
+    alignItems: 'flex-end',
+    alignContent: 'flex-end',
+    height: 425,
   },
   content: {
     background: colors.white,
-    padding: 40,
+    padding: '40px 20px 20px',
     textAlign: 'center',
-    width: '70%',
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translateX(-50%)',
+    width: '80%',
+    margin: 'auto',
+    marginBottom: -220,
   },
   title: {
     fontSize: 24,
