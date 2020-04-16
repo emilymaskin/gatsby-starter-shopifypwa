@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   InstantSearch,
-  Index,
   Hits,
   connectStateResults,
 } from 'react-instantsearch-dom';
@@ -17,22 +16,15 @@ const Results = connectStateResults(
     if (!state.query) {
       return null;
     }
-    if (res && res.nbHits > 0) {
-      return (
-        <div className={css(styles.results, state.query ? styles.show : null)}>
-          {children}
-        </div>
-      );
-    }
     return (
       <div className={css(styles.results, state.query ? styles.show : null)}>
-        No results for {state.query}
+        {res && res.nbHits > 0 ? children : `No results for ${state.query}`}
       </div>
     );
   },
 );
 
-export default function Search({ indices, collapse, hitsAsGrid }) {
+const Search = ({ indices, collapse, hitsAsGrid }) => {
   const [focus, setFocus] = useState(false);
   const searchClient = algoliasearch(
     process.env.GATSBY_ALGOLIA_APP_ID,
@@ -44,16 +36,16 @@ export default function Search({ indices, collapse, hitsAsGrid }) {
       <div className={css(styles.searchWrapper)}>
         <Input onFocus={() => setFocus(true)} {...{ collapse, focus }} />
         {indices.map(({ name, hitComp }) => (
-          <Index key={name} indexName={name}>
-            <Results>
-              <Hits hitComponent={hitComps[hitComp](() => setFocus(false))} />
-            </Results>
-          </Index>
+          <Results key={name}>
+            <Hits hitComponent={hitComps[hitComp](() => setFocus(false))} />
+          </Results>
         ))}
       </div>
     </InstantSearch>
   );
-}
+};
+
+export default Search;
 
 const styles = StyleSheet.create({
   searchWrapper: {
