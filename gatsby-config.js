@@ -1,5 +1,3 @@
-const queries = require('./src/utils/algolia');
-
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
@@ -77,7 +75,6 @@ module.exports = {
       options: {
         appId: process.env.GATSBY_ALGOLIA_APP_ID,
         apiKey: process.env.ALGOLIA_ADMIN_KEY,
-        queries,
         chunkSize: 10000, // default: 1000
       },
     },
