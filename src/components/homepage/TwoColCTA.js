@@ -5,8 +5,8 @@ import { colors } from '../../utils/constants';
 const TwoColCTA = ({ content }) => {
   return (
     <div className={css(styles.wrapper)}>
-      {content.edges.map((col) => (
-        <div className={css(styles.col)}>
+      {content.edges.map((col, index) => (
+        <div className={css(styles.col)} key={index}>
           <img src={col.node.data.image.url} alt="" />
           <div className={css(styles.content)}>
             <div className={css(styles.title)}>{col.node.data.title}</div>

@@ -21,7 +21,7 @@ const CartLink = () => (
           >
             <div className={css(styles.linkInner)}>
               <svg
-                ariaHidden="true"
+                aria-hidden="true"
                 focusable="false"
                 role="presentation"
                 viewBox="0 0 20 20"
