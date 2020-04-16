@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import BackgroundImage from 'gatsby-background-image';
 import Carousel, { Dots } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import { colors } from '../../utils/constants';
+import idx from 'idx';
 
 const Hero = ({ slides }) => {
   const [slide, setSlide] = useState(0);
@@ -10,7 +12,7 @@ const Hero = ({ slides }) => {
   const onChange = (value) => setSlide(value);
 
   return (
-    <div className={css(styles.carouselWrapper, styles.desktop)}>
+    <>
       <Carousel
         slidesPerPage={1}
         slidesPerScroll={1}
@@ -21,23 +23,26 @@ const Hero = ({ slides }) => {
       >
         {slides.edges.map((slide, index) => (
           <div className={css(styles.slide)} key={index}>
-            <img
-              src={slide.node.data.desktop_image.url}
+            <BackgroundImage
               className={css(styles.image)}
-              alt=""
-            />
-            <div className={css(styles.content)}>
-              <h3 className={css(styles.h3)}>{slide.node.data.subtitle}</h3>
-              <h2 className={css(styles.h2)}>{slide.node.data.title}</h2>
-              <a
-                className={css(styles.button)}
-                href={slide.node.data.cta_link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {slide.node.data.cta_text}
-              </a>
-            </div>
+              fluid={idx(
+                slide.node.data.desktop_image,
+                (_) => _.localFile.childImageSharp.fluid,
+              )}
+            >
+              <div className={css(styles.content)}>
+                <h3 className={css(styles.h3)}>{slide.node.data.subtitle}</h3>
+                <h2 className={css(styles.h2)}>{slide.node.data.title}</h2>
+                <a
+                  className={css(styles.button)}
+                  href={slide.node.data.cta_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {slide.node.data.cta_text}
+                </a>
+              </div>
+            </BackgroundImage>
           </div>
         ))}
       </Carousel>
@@ -47,32 +52,29 @@ const Hero = ({ slides }) => {
         onChange={onChange}
         number={3}
       />
-    </div>
+    </>
   );
 };
 
 export default Hero;
 
 const styles = StyleSheet.create({
-  carouselWrapper: {
-    position: 'relative',
-    height: 480,
-  },
   slide: {
-    position: 'relative',
     display: 'flex',
     alignContent: 'center',
+    height: 480,
+    minWidth: '100%',
   },
   content: {
     color: colors.white,
-    position: 'absolute',
-    top: '50%',
-    transform: 'translateY(-50%)',
     marginLeft: 190,
   },
   image: {
-    height: '100%',
     minWidth: '100%',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    display: 'flex',
+    alignItems: 'center',
   },
   h2: {
     fontSize: 46,

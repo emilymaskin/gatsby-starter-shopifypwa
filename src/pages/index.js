@@ -60,7 +60,13 @@ export const query = graphql`
             title
             subtitle
             desktop_image {
-              url
+              localFile {
+                childImageSharp {
+                  fluid(quality: 90, maxWidth: 1800) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
             }
             cta_text
             cta_link
