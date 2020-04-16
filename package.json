@@ -7,7 +7,6 @@
     "@brainhubeu/react-carousel": "^1.13.24",
     "algoliasearch": "^4.1.0",
     "aphrodite": "^2.4.0",
-    "dotenv": "^8.2.0",
     "formik": "^2.1.4",
     "fsevents": "^2.1.2",
     "gatsby": "^2.0.46",
