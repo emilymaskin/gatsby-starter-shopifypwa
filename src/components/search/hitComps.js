@@ -1,14 +1,27 @@
 import React from 'react';
-import { Highlight, Snippet } from 'react-instantsearch-dom';
 import { Link } from 'gatsby';
+import { StyleSheet, css } from 'aphrodite/no-important';
+import { colors } from '../../utils/constants';
 
-export const ProductHit = (clickHandler) => ({ hit }) => (
-  <div>
-    <Link to={hit.slug} onClick={clickHandler}>
-      <h4>
-        <Highlight attribute="title" hit={hit} tagName="mark" />
-      </h4>
-    </Link>
-    <Snippet attribute="excerpt" hit={hit} tagName="mark" />
-  </div>
-);
+export const ProductHit = (clickHandler) => ({ hit }) => {
+  return (
+    <div>
+      <Link
+        to={`/products/${hit.handle}`}
+        onClick={clickHandler}
+        className={css(styles.result)}
+      >
+        {hit.title}
+      </Link>
+    </div>
+  );
+};
+
+const styles = StyleSheet.create({
+  result: {
+    textDecoration: 'none',
+    color: colors.textGray,
+    fontSize: 14,
+    lineHeight: 1,
+  },
+});

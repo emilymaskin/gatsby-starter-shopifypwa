@@ -6,22 +6,26 @@ import {
   connectStateResults,
 } from 'react-instantsearch-dom';
 import algoliasearch from 'algoliasearch/lite';
+import { StyleSheet, css } from 'aphrodite/no-important';
+import { colors } from '../../utils/constants';
 
-import { Root, HitsWrapper } from './styles';
 import Input from './Input';
 import * as hitComps from './hitComps';
 
 const Results = connectStateResults(
   ({ searchState: state, searchResults: res, children }) => {
-    return children;
-    console.log(state, res, children);
-    return res && res.nbHits > 0 ? children : `No results for '${state.query}'`;
+    if (!state.query) {
+      return null;
+    }
+    if (res && res.nbHits > 0) {
+      return (
+        <div className={css(styles.results, state.query ? styles.show : null)}>
+          {children}
+        </div>
+      );
+    }
+    return `No results for '${state.query}'`;
   },
-);
-
-const Stats = connectStateResults(
-  ({ searchResults: res }) =>
-    res && res.nbHits > 0 && `${res.nbHits} result${res.nbHits > 1 ? `s` : ``}`,
 );
 
 const useClickOutside = (ref, handler, events) => {
@@ -46,28 +50,44 @@ export default function Search({ indices, collapse, hitsAsGrid }) {
     process.env.GATSBY_ALGOLIA_APP_ID,
     process.env.GATSBY_ALGOLIA_SEARCH_KEY,
   );
+
   //useClickOutside(ref, () => setFocus(false));
   return (
     <InstantSearch
       searchClient={searchClient}
       indexName={indices[0].name}
       onSearchStateChange={({ query }) => setQuery(query)}
-      root={{ Root, props: { ref } }}
     >
-      <Input onFocus={() => setFocus(true)} {...{ collapse, focus }} />
-      <HitsWrapper show={query.length > 0 && focus} asGrid={hitsAsGrid}>
-        {indices.map(({ name, title, hitComp }) => (
+      <div className={css(styles.searchWrapper)}>
+        <Input onFocus={() => setFocus(true)} {...{ collapse, focus }} />
+        {indices.map(({ name, hitComp }) => (
           <Index key={name} indexName={name}>
-            <header>
-              <h3>{title}</h3>
-              <Stats />
-            </header>
             <Results>
               <Hits hitComponent={hitComps[hitComp](() => setFocus(false))} />
             </Results>
           </Index>
         ))}
-      </HitsWrapper>
+      </div>
     </InstantSearch>
   );
 }
+
+const styles = StyleSheet.create({
+  searchWrapper: {
+    position: 'relative',
+  },
+  results: {
+    position: 'absolute',
+    display: 'none',
+    height: 300,
+    width: 200,
+    zIndex: 1000,
+    background: colors.white,
+    padding: 20,
+    overflow: 'hidden',
+    border: `1px solid ${colors.grayBorder}`,
+  },
+  show: {
+    display: 'block',
+  },
+});
